@@ -17,7 +17,6 @@ namespace Quanly.managerhistory
         public inputhistory()
         {
             InitializeComponent();
-
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
             if (tralaicheckBox.Checked)
@@ -94,12 +93,13 @@ namespace Quanly.managerhistory
             modelCB.SelectedValue = s.mamodel;
             getdsseri();
             seriCB.SelectedValue = x.ToString();
+            TraCuu();
             getKysulay();
             getKysuph();
             getHientrang();
             getKhachhang();
             getNoiLay();
-            TraCuu();
+            getInitDataGridView(0);
         }
         
         private void getNoiLay()
@@ -109,6 +109,7 @@ namespace Quanly.managerhistory
             Dictionary<string, string> combosource = new Dictionary<string, string>();
             NoiLayPTHandler nlh = new NoiLayPTHandler();
             List<NoiLayPT> lnl = nlh.layds();
+            combosource.Add("",null);
             foreach(NoiLayPT nl in lnl)
             {
                 combosource.Add(nl.ma,nl.ten);
@@ -177,19 +178,11 @@ namespace Quanly.managerhistory
 
             SeriHandler lh = new SeriHandler();
             List<Model.Seri> ls = lh.layds(mamay, mamodel);
-            if (ls.Count == 0)
+            combosource.Add("", null);
+            foreach (Model.Seri lm in ls)
             {
-                combosource.Add("0", "null");
+                combosource.Add(lm.pk.ToString(),lm.ten);
             }
-            else
-            {
-                foreach (Model.Seri lm in ls)
-                {
-                    combosource.Add(lm.pk.ToString(),lm.ten);
-                }
-            }
-
-
             seriCB.DataSource = new BindingSource(combosource, null);
             seriCB.DisplayMember = "Value";
             seriCB.ValueMember = "Key";
@@ -213,7 +206,8 @@ namespace Quanly.managerhistory
             KhachHangHandler khhd = new KhachHangHandler();
             List<Model.KhachHang> khl = new List<Model.KhachHang>();
             khl = khhd.layds();
-            foreach(Model.KhachHang kh in khl)
+            combosource.Add("", null);
+            foreach (Model.KhachHang kh in khl)
             {
                 combosource.Add(kh.ma, kh.ten);
             }
@@ -230,7 +224,8 @@ namespace Quanly.managerhistory
             KySuHandler ksh = new KySuHandler();
             List<Model.KySu> lks = new List<KySu>();
             lks = ksh.layds();
-            foreach(Model.KySu ks in lks)
+            combosource.Add("", null);
+            foreach (Model.KySu ks in lks)
             {
                 combosource.Add(ks.ma, ks.ten);
             }
@@ -246,6 +241,7 @@ namespace Quanly.managerhistory
             KySuHandler ksh = new KySuHandler();
             List<Model.KySu> lks = new List<KySu>();
             lks = ksh.layds();
+            combosource.Add("", null);
             foreach (Model.KySu ks in lks)
             {
                 combosource.Add(ks.ma, ks.ten);
@@ -263,16 +259,11 @@ namespace Quanly.managerhistory
             LinhKienHandle lkh = new LinhKienHandle();
             List<Model.linhkien> llk = new List<linhkien>();
             llk = lkh.layds(model);
-            if (llk.Count == 0)
+            combosource.Add("", null);
+            
+            foreach (Model.linhkien lk in llk)
             {
-                combosource.Add("", null);
-            }
-            else
-            {
-                foreach (Model.linhkien lk in llk)
-                {
-                    combosource.Add(lk.ma, lk.ten);
-                }
+               combosource.Add(lk.ma, lk.ten);
             }
             malkCB.DataSource = new BindingSource(combosource, null);
             malkCB.DisplayMember = "Value";
@@ -365,6 +356,7 @@ namespace Quanly.managerhistory
             List<Model.HienTrang> lht = new List<Model.HienTrang>();
             lht = hth.layds();
             Dictionary<string, string> combosource = new Dictionary<string, string>();
+            combosource.Add("",null);
             foreach(Model.HienTrang ht in lht)
             {
                 string ma = ht.ma.ToString();
@@ -434,7 +426,7 @@ namespace Quanly.managerhistory
             LichsumoiHandler lsm = new LichsumoiHandler();
             lsm.them(this.pk, khachhang, lklay, kslay, lydolay, ngaylay, ttrlay, ngayPh, ksPh, ttrPhLay,
                srmayphlap, vtrmoiPhlay, ghichuphlay, ttrphlap, srmayphlay, xuatsu, ghichuphlap);
-
+            TraCuu();
         }
 
         private void dataGridView1_Click(object sender, EventArgs e)
@@ -446,7 +438,11 @@ namespace Quanly.managerhistory
             List<RecordNew> list = new List<RecordNew>();
             LichsumoiHandler lh = new LichsumoiHandler();
 
-            list = lh.tracuu(128, dateFrom.Value, dateTo.Value);
+            list = lh.tracuu(this.pk, dateFrom.Value, dateTo.Value);
+            if(list.Count != 0)
+            {
+                
+            }
 
             KhachHangHandler khhd = new KhachHangHandler();
             LinhKienHandle lkhd = new LinhKienHandle();
@@ -454,7 +450,6 @@ namespace Quanly.managerhistory
             HienTrangHandler htrhd = new HienTrangHandler();
             NoiLayPTHandler nlhd = new NoiLayPTHandler();
             SeriHandler srhd = new SeriHandler();
-
             dataGridView1.Rows.Clear();
             foreach (RecordNew r in list)
             {
@@ -469,10 +464,13 @@ namespace Quanly.managerhistory
                 int xttrPhLay = 0;
                 Int32.TryParse(r.ttrPhLay, out xttrPhLay);
                 HienTrang ttrPhLay1 = htrhd.laythongtin(xttrPhLay, "");
+
                 NoiLayPT vtrmoiPhlay1 = nlhd.laythongtin(r.vtrmoiPhlay, "");
+
                 int xttrphlap = 0;
                 Int32.TryParse(r.ttrphlap, out xttrphlap);
-                HienTrang ttrphlap1 = htrhd.laythongtin(xttrphlap, "");
+                HienTrang ttrphlap1 = htrhd.laythongtin(0, "");
+
                 NoiLayPT xuatsu1 = nlhd.laythongtin(r.xuatsu, "");
                 int xsrmayphlap = 0;
                 Int32.TryParse(r.srmayphlap, out xsrmayphlap);
@@ -483,10 +481,11 @@ namespace Quanly.managerhistory
 
                 dataGridView1.Rows.Add(r.pk,r.keyseri, khhg.ten, ksl1.ten, lk.ten, r.ngaylay.ToString("dd/MM/yyyy hh:mm:ss"), r.lydolay,
                         ttrlay1.ten, ksPH1.ten, r.ngayPh.ToString("dd/MM/yyyy hh:mm:ss")
-                       ,  ttrPhLay1.ten, sr1.ten, vtrmoiPhlay1.ten, r.ghichuphlay,
-                       ttrphlap1.ten, sr2.ten, xuatsu1.ten, r.ghichuphlap); 
+                       ,  ttrPhLay1.ten, sr1.ten, vtrmoiPhlay1.ten, r.ghichuphlay, xuatsu1.ten, sr2.ten
+                       , ttrphlap1.ten, r.ghichuphlap); 
           
             }
+            dataGridView1.Rows.Add();
         }
 
         private void dataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
@@ -494,101 +493,215 @@ namespace Quanly.managerhistory
             e.PaintParts &= ~DataGridViewPaintParts.Focus;
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void getInitDataGridView(int index)
         {
             
-            if (e.RowIndex == -1) { return; }
-            string pkstr = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            int pk = 0;
-            Int32.TryParse(pkstr, out pk);
-            string keyseristr = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            int keyseri = 0;
-            Int32.TryParse(keyseristr, out keyseri);
+            if(dataGridView1.Rows[index].Cells[0].Value != null)
+            {
+                string pkstr = dataGridView1.Rows[index].Cells[0].Value.ToString();
+                int pk = 0;
+                Int32.TryParse(pkstr, out pk);
+            }
+            
+            if(dataGridView1.Rows[index].Cells[0].Value != null)
+            {
+                string keyseristr = dataGridView1.Rows[index].Cells[0].Value.ToString();
+                int keyseri = 0;
+                Int32.TryParse(keyseristr, out keyseri);
+            }
+
             //-------
-            string khachhang = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             KhachHangHandler khhd = new KhachHangHandler();
-            KhachHang kh = khhd.laythongtin("", khachhang);
-            khachhangCB.SelectedValue = kh.ma;
+            if (dataGridView1.Rows[index].Cells[2].Value != null)
+            {
+                string khachhang = dataGridView1.Rows[index].Cells[2].Value.ToString();
+
+                KhachHang kh = khhd.laythongtin("", khachhang);
+                khachhangCB.SelectedValue = kh.ma;
+            }
+            
             //-------
-            string lklay = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
-            LinhKienHandle lkhd = new LinhKienHandle();
-            string model = ((KeyValuePair<string, string>)modelCB.SelectedItem).Key;
-            linhkien lk = lkhd.laythongtin(model, "", lklay);
-            malkCB.SelectedValue = lk.ma;
+            if(dataGridView1.Rows[index].Cells[4].Value != null)
+            {
+                string lklay = dataGridView1.Rows[index].Cells[4].Value.ToString();
+
+                LinhKienHandle lkhd = new LinhKienHandle();
+                string model = ((KeyValuePair<string, string>)modelCB.SelectedItem).Key;
+                linhkien lk = lkhd.laythongtin(model, "", lklay);
+                malkCB.SelectedValue = lk.ma;
+            }
+            else
+            {
+                malkCB.SelectedIndex = 0;
+            }
+
             ///
-            string kslay = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             KySuHandler khs = new KySuHandler();
-            KySu ks = khs.laythongtin("", kslay);
-            kslayCB.SelectedValue = ks.ma;
+            if (dataGridView1.Rows[index].Cells[3].Value != null)
+            {
+                string kslay = dataGridView1.Rows[index].Cells[3].Value.ToString();
+                
+                KySu ks = khs.laythongtin("", kslay);
+                kslayCB.SelectedValue = ks.ma;
+            }
+            else kslayCB.SelectedIndex = 0;
+            
             ////
+            if(dataGridView1.Rows[index].Cells[6].Value != null)
+            {
+                string lydolay = dataGridView1.Rows[index].Cells[6].Value.ToString();
+                lydolaytxt.Text = lydolay;
+            }
+            else
+            {
+                lydolaytxt.Text = "";
+            }
 
-            string lydolay = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
-            lydolaytxt.Text = lydolay;
-
-            string ngaylaystr = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
-            //MessageBox.Show(ngaylaystr);
-            DateTime ngaylay = DateTime.ParseExact(ngaylaystr, "dd/MM/yyyy hh:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-            //MessageBox.Show(ngaylay.ToString());
-            datelay.Value = ngaylay;
-
-            string ttrlay = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
+            if (dataGridView1.Rows[index].Cells[5].Value != null)
+            {
+                string ngaylaystr = dataGridView1.Rows[index].Cells[5].Value.ToString();
+                DateTime ngaylay = DateTime.ParseExact(ngaylaystr, "dd/MM/yyyy hh:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                datelay.Value = ngaylay;
+            }
+            else datelay.Value = DateTimePicker.MinimumDateTime;
+            
             HienTrangHandler hthd = new HienTrangHandler();
-            HienTrang ht = hthd.laythongtin(0, ttrlay);
-            string mastr = ht.ma.ToString();
-            tinhtranglayCB.SelectedValue = mastr;
+            if (dataGridView1.Rows[index].Cells[7].Value != null)
+            {
+                string ttrlay = dataGridView1.Rows[index].Cells[7].Value.ToString();
 
-            string ngayPhstr = dataGridView1.Rows[e.RowIndex].Cells[9].Value.ToString();
-            DateTime ngayPh = DateTime.ParseExact(ngayPhstr, "dd/MM/yyyy hh:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                HienTrang ht = hthd.laythongtin(0, ttrlay);
+                string mastr = ht.ma.ToString();
+                tinhtranglayCB.SelectedValue = mastr;
+            }
+            else tinhtranglayCB.SelectedIndex = 0;
 
-            datePH.Value = ngayPh;
-           
+            if (dataGridView1.Rows[index].Cells[9].Value != null)
+            {
+                string ngayPhstr = dataGridView1.Rows[index].Cells[9].Value.ToString();
+                DateTime ngayPh = DateTime.ParseExact(ngayPhstr, "dd/MM/yyyy hh:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                datePH.Value = ngayPh;
+            }
+            else datePH.Value = DateTimePicker.MinimumDateTime;
+            
 
+            if (dataGridView1.Rows[index].Cells[8].Value != null)
+            {
+                string ksPh = dataGridView1.Rows[index].Cells[8].Value.ToString();
+                KySu ks1 = khs.laythongtin("", ksPh);
+                ksphCB.SelectedValue = ks1.ma;
+            }
+            else ksphCB.SelectedIndex = 0;
 
-            string ksPh = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
-            KySu ks1 = khs.laythongtin("", ksPh);
-            ksphCB.SelectedValue = ks1.ma;
+            if (dataGridView1.Rows[index].Cells[10].Value != null)
+            {
+                string ttrPhLay = dataGridView1.Rows[index].Cells[10].Value.ToString();
+                HienTrang ht1 = hthd.laythongtin(0, ttrPhLay);
+                string ht1m = ht1.ma.ToString();
+                tinhtranglayphCB.SelectedValue = ht1m;
+            }
+            else tinhtranglayphCB.SelectedIndex = 0;
 
-            string ttrPhLay = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
-            HienTrang ht1 = hthd.laythongtin(0, ttrPhLay);
-            string ht1m = ht1.ma.ToString();
-            tinhtranglayphCB.SelectedValue = ht1m;
-
-            string srmayphlap = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString();
+            
             SeriHandler srhd = new SeriHandler();
-            Seri sr = srhd.laythongtinma(srmayphlap);
-            string srm = sr.pk.ToString();
-            srlayphCB.SelectedValue = srm;
+            if (dataGridView1.Rows[index].Cells[11].Value != null)
+            {
+                string srmayphlap = dataGridView1.Rows[index].Cells[11].Value.ToString();
 
-            string vtrmoiPhlay = dataGridView1.Rows[e.RowIndex].Cells[12].Value.ToString();
+                Seri sr = srhd.laythongtinma(srmayphlap);
+                string srm = sr.pk.ToString();
+                srlayphCB.SelectedValue = srm;
+            }
+            else srlayphCB.SelectedIndex = 0;
+
             NoiLayPTHandler vtrhd = new NoiLayPTHandler();
-            NoiLayPT nl = vtrhd.laythongtin("", vtrmoiPhlay);
-            vitrilaymCB.SelectedValue = nl.ma;
+            if (dataGridView1.Rows[index].Cells[12].Value != null)
+            {
+                string vtrmoiPhlay = dataGridView1.Rows[index].Cells[12].Value.ToString();
 
-            string ghichuphlay = dataGridView1.Rows[e.RowIndex].Cells[13].Value.ToString();
-            ghichutxt.Text = ghichuphlay;
+                NoiLayPT nl = vtrhd.laythongtin("", vtrmoiPhlay);
+                vitrilaymCB.SelectedValue = nl.ma;
+            }
+            else vitrilaymCB.SelectedIndex = 0;
 
-            string ttrphlap = dataGridView1.Rows[e.RowIndex].Cells[14].Value.ToString();
-            HienTrang ht2 = hthd.laythongtin(0, ttrphlap);
-            string ht2m = ht2.ma.ToString();
-            tinhtranglapCB.SelectedValue = ht2m;
+            
 
-            string srmayphlay = dataGridView1.Rows[e.RowIndex].Cells[15].Value.ToString();
-            Seri sr1 = srhd.laythongtinma(srmayphlay);
-            string sr1m = sr1.pk.ToString();
-            serilapCB.SelectedValue = sr1m;
+            if (dataGridView1.Rows[index].Cells[13].Value != null)
+            {
+                string ghichuphlay = dataGridView1.Rows[index].Cells[13].Value.ToString();
+                ghichutxt.Text = ghichuphlay;
+            }
+            else ghichutxt.Text = "";
 
-            string xuatsu = dataGridView1.Rows[e.RowIndex].Cells[16].Value.ToString();
-            NoiLayPT nl1 = vtrhd.laythongtin("", xuatsu);
-            vtlapphCB.SelectedValue = nl1.ma;
+            if (dataGridView1.Rows[index].Cells[14].Value != null)
+            {
+                string ttrphlap = dataGridView1.Rows[index].Cells[14].Value.ToString();
+                HienTrang ht2 = hthd.laythongtin(0, ttrphlap);
+                string ht2m = ht2.ma.ToString();
+                tinhtranglapCB.SelectedValue = ht2m;
+            }
+            else tinhtranglapCB.SelectedIndex = 0;
+            
 
-            string ghichuphlap = dataGridView1.Rows[e.RowIndex].Cells[17].Value.ToString();
-            ghichulaptxt.Text = ghichuphlap;
+            if (dataGridView1.Rows[index].Cells[15].Value != null)
+            {
+                string srmayphlay = dataGridView1.Rows[index].Cells[15].Value.ToString();
+                Seri sr1 = srhd.laythongtinma(srmayphlay);
+                string sr1m = sr1.pk.ToString();
+                serilapCB.SelectedValue = sr1m;
+            }
+            else serilapCB.SelectedIndex = 0;
+
+            if (dataGridView1.Rows[index].Cells[16].Value != null)
+            {
+                string xuatsu = dataGridView1.Rows[index].Cells[16].Value.ToString();
+                NoiLayPT nl1 = vtrhd.laythongtin("", xuatsu);
+                vtlapphCB.SelectedValue = nl1.ma;
+            }
+            else vtlapphCB.SelectedIndex = 0;
+
+            
+            if(dataGridView1.Rows[index].Cells[17].Value !=  null)
+            {
+                string ghichuphlap = dataGridView1.Rows[index].Cells[17].Value.ToString();
+                ghichulaptxt.Text = ghichuphlap;
+            }else ghichulaptxt.Text = "";
+            
+        }
+
+
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) { return; }
+            getInitDataGridView(e.RowIndex);
 
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-                  
+
+        }
+
+        private void dataGridView1_CellStateChanged(object sender, DataGridViewCellStateChangedEventArgs e)
+        {
+           
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TraCuu();
         }
     }
    

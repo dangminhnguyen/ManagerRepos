@@ -40,7 +40,7 @@ namespace Quanly
             dataGridView2.RowPrePaint += new DataGridViewRowPrePaintEventHandler(dataGridView1_RowPrePaint);
             layds();
             laydsKho();
-
+            
         }
        
         public void dangnhap()
@@ -151,7 +151,7 @@ namespace Quanly
             QuanlyDongMay.QuanlyDongMay frm2 = new QuanlyDongMay.QuanlyDongMay();
             frm2.StartPosition = FormStartPosition.CenterParent;
             frm2.ShowDialog(this);
-
+            
         }
 
         private void quảnLýPhụTráchToolStripMenuItem_Click(object sender, EventArgs e)
@@ -548,8 +548,6 @@ namespace Quanly
                 }
             }
         }
-
-        
 
         private void QuảnLýLinhKiệnMáyToolStripMenuItem_Click(object sender, EventArgs e)
         {
