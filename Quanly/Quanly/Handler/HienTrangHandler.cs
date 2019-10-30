@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Quanly.Model;
+using System.Windows.Forms;
 
 namespace Quanly.Handler
 {
@@ -80,6 +81,7 @@ namespace Quanly.Handler
                             String ten1 = reader.GetString(reader.GetOrdinal("ten"));
                             lm.ma = ma1;
                             lm.ten = ten1;
+                               
                         }
                 }
             }
