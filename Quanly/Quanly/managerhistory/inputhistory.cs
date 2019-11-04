@@ -13,7 +13,8 @@ namespace Quanly.managerhistory
 {
     public partial class inputhistory : Form
     {
-        public int pk { get; set;}
+        public int keyseri { get; set;}
+        public int pk { get; set; }
         public inputhistory()
         {
             InitializeComponent();
@@ -51,7 +52,7 @@ namespace Quanly.managerhistory
             InitializeComponent();
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
-            this.pk = x;
+            this.keyseri = x;
             if (tralaicheckBox.Checked)
             {
                 groupBox5.Enabled = false;
@@ -283,6 +284,12 @@ namespace Quanly.managerhistory
                 button4.Enabled = false;
                 groupBox4.Enabled = false;
                 groupBox5.Enabled = false;
+                vitrilaymCB.SelectedIndex = 0;
+                srlayphCB.SelectedIndex = 0;
+                tinhtranglapCB.SelectedIndex = 0;
+                vtlapphCB.SelectedIndex = 0;
+                serilapCB.SelectedIndex = 0;
+                ghichulaptxt.Text = "";
             }
             else
             {
@@ -294,7 +301,11 @@ namespace Quanly.managerhistory
 
         private void FullmaycheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (fullmaycheckBox.Checked) malkCB.Enabled = false;
+            if (fullmaycheckBox.Checked)
+            {
+                malkCB.Enabled = false;
+                malkCB.SelectedIndex = 0;
+            } 
             else malkCB.Enabled = true;
         }
 
@@ -383,7 +394,7 @@ namespace Quanly.managerhistory
 
         private void ADD_Click(object sender, EventArgs e)
         {
-            int keyseri = this.pk;
+            int keyseri = this.keyseri;
 
             string khachhang = ((KeyValuePair<string, string>)khachhangCB.SelectedItem).Key;
 
@@ -396,7 +407,6 @@ namespace Quanly.managerhistory
             DateTime ngaylay = datelay.Value;
             string ttrlay = ((KeyValuePair<string, string>)tinhtranglayCB.SelectedItem).Key;
             DateTime ngayPh = datePH.Value;
-            MessageBox.Show(ngayPh.ToString());
             string ksPh = ((KeyValuePair<string, string>)ksphCB.SelectedItem).Key;
             string ttrPhLay = ((KeyValuePair<string, string>)tinhtranglayphCB.SelectedItem).Key; 
             string ghichuphlay = ghichutxt.Text;
@@ -411,7 +421,6 @@ namespace Quanly.managerhistory
             if (!tralaicheckBox.Checked)
             {
                 vtrmoiPhlay = ((KeyValuePair<string, string>)vitrilaymCB.SelectedItem).Key;
-                MessageBox.Show(vtrmoiPhlay);
                 if (vtrmoiPhlay == "GĐ") srmayphlap = "";
                 else srmayphlap = ((KeyValuePair<string, string>)srlayphCB.SelectedItem).Key;
 
@@ -419,12 +428,12 @@ namespace Quanly.managerhistory
                 if (xuatsu == "GĐ") srmayphlay = "";
                 else srmayphlay = ((KeyValuePair<string, string>)serilapCB.SelectedItem).Key;
 
-                ttrphlap = ((KeyValuePair<string, string>)tinhtranglayCB.SelectedItem).Key; 
+                ttrphlap = ((KeyValuePair<string, string>)tinhtranglapCB.SelectedItem).Key; 
                 ghichuphlap = ghichulaptxt.Text;
             }
             
             LichsumoiHandler lsm = new LichsumoiHandler();
-            lsm.them(this.pk, khachhang, lklay, kslay, lydolay, ngaylay, ttrlay, ngayPh, ksPh, ttrPhLay,
+            lsm.them(this.keyseri, khachhang, lklay, kslay, lydolay, ngaylay, ttrlay, ngayPh, ksPh, ttrPhLay,
                srmayphlap, vtrmoiPhlay, ghichuphlay, ttrphlap, srmayphlay, xuatsu, ghichuphlap);
             TraCuu();
         }
@@ -438,7 +447,7 @@ namespace Quanly.managerhistory
             List<RecordNew> list = new List<RecordNew>();
             LichsumoiHandler lh = new LichsumoiHandler();
 
-            list = lh.tracuu(this.pk, dateFrom.Value, dateTo.Value);
+            list = lh.tracuu(this.keyseri, dateFrom.Value, dateTo.Value);
             if(list.Count != 0)
             {
                 
@@ -457,9 +466,11 @@ namespace Quanly.managerhistory
                 string model = ((KeyValuePair<string, string>)modelCB.SelectedItem).Key;
                 linhkien lk = lkhd.laythongtin(model, r.lklay, "");
                 KySu ksl1 = kshd.laythongtin(r.kslay, "");
+
                 int xttrlay = 0;
                 Int32.TryParse(r.ttrlay, out xttrlay);
                 HienTrang ttrlay1 = htrhd.laythongtin(xttrlay,"");
+
                 KySu ksPH1 = kshd.laythongtin(r.ksPh, "");
                 int xttrPhLay = 0;
                 Int32.TryParse(r.ttrPhLay, out xttrPhLay);
@@ -469,7 +480,7 @@ namespace Quanly.managerhistory
 
                 int xttrphlap = 0;
                 Int32.TryParse(r.ttrphlap, out xttrphlap);
-                HienTrang ttrphlap1 = htrhd.laythongtin(0, "");
+                HienTrang ttrphlap1 = htrhd.laythongtin(xttrphlap, "");
 
                 NoiLayPT xuatsu1 = nlhd.laythongtin(r.xuatsu, "");
                 int xsrmayphlap = 0;
@@ -496,14 +507,17 @@ namespace Quanly.managerhistory
         private void getInitDataGridView(int index)
         {
             
+
             if(dataGridView1.Rows[index].Cells[0].Value != null)
             {
                 string pkstr = dataGridView1.Rows[index].Cells[0].Value.ToString();
                 int pk = 0;
                 Int32.TryParse(pkstr, out pk);
+                this.pk = pk;
+                
             }
             
-            if(dataGridView1.Rows[index].Cells[0].Value != null)
+            if(dataGridView1.Rows[index].Cells[1].Value != null)
             {
                 string keyseristr = dataGridView1.Rows[index].Cells[0].Value.ToString();
                 int keyseri = 0;
@@ -519,9 +533,17 @@ namespace Quanly.managerhistory
                 KhachHang kh = khhd.laythongtin("", khachhang);
                 khachhangCB.SelectedValue = kh.ma;
             }
-            
+            KySuHandler khs = new KySuHandler();
+            if (dataGridView1.Rows[index].Cells[3].Value != null)
+            {
+                string kslay = dataGridView1.Rows[index].Cells[3].Value.ToString();
+
+                KySu ks = khs.laythongtin("", kslay);
+                kslayCB.SelectedValue = ks.ma;
+            }
+            else kslayCB.SelectedIndex = 0;
             //-------
-            if(dataGridView1.Rows[index].Cells[4].Value != null)
+            if (dataGridView1.Rows[index].Cells[4].Value != null)
             {
                 string lklay = dataGridView1.Rows[index].Cells[4].Value.ToString();
 
@@ -529,25 +551,25 @@ namespace Quanly.managerhistory
                 string model = ((KeyValuePair<string, string>)modelCB.SelectedItem).Key;
                 linhkien lk = lkhd.laythongtin(model, "", lklay);
                 malkCB.SelectedValue = lk.ma;
+                fullmaycheckBox.Checked = false;
             }
             else
             {
                 malkCB.SelectedIndex = 0;
+                fullmaycheckBox.Checked = true;
             }
 
             ///
-            KySuHandler khs = new KySuHandler();
-            if (dataGridView1.Rows[index].Cells[3].Value != null)
+
+            if (dataGridView1.Rows[index].Cells[5].Value != null)
             {
-                string kslay = dataGridView1.Rows[index].Cells[3].Value.ToString();
-                
-                KySu ks = khs.laythongtin("", kslay);
-                kslayCB.SelectedValue = ks.ma;
+                string ngaylaystr = dataGridView1.Rows[index].Cells[5].Value.ToString();
+                DateTime ngaylay = DateTime.ParseExact(ngaylaystr, "dd/MM/yyyy hh:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                datelay.Value = ngaylay;
             }
-            else kslayCB.SelectedIndex = 0;
-            
+            else datelay.Value = DateTimePicker.MinimumDateTime;
             ////
-            if(dataGridView1.Rows[index].Cells[6].Value != null)
+            if (dataGridView1.Rows[index].Cells[6].Value != null)
             {
                 string lydolay = dataGridView1.Rows[index].Cells[6].Value.ToString();
                 lydolaytxt.Text = lydolay;
@@ -557,24 +579,26 @@ namespace Quanly.managerhistory
                 lydolaytxt.Text = "";
             }
 
-            if (dataGridView1.Rows[index].Cells[5].Value != null)
-            {
-                string ngaylaystr = dataGridView1.Rows[index].Cells[5].Value.ToString();
-                DateTime ngaylay = DateTime.ParseExact(ngaylaystr, "dd/MM/yyyy hh:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                datelay.Value = ngaylay;
-            }
-            else datelay.Value = DateTimePicker.MinimumDateTime;
+            
             
             HienTrangHandler hthd = new HienTrangHandler();
             if (dataGridView1.Rows[index].Cells[7].Value != null)
             {
                 string ttrlay = dataGridView1.Rows[index].Cells[7].Value.ToString();
 
-                HienTrang ht = hthd.laythongtin(0, ttrlay);
+                HienTrang ht = hthd.laythongtin(1, ttrlay);
                 string mastr = ht.ma.ToString();
                 tinhtranglayCB.SelectedValue = mastr;
             }
             else tinhtranglayCB.SelectedIndex = 0;
+
+            if (dataGridView1.Rows[index].Cells[8].Value != null)
+            {
+                string ksPh = dataGridView1.Rows[index].Cells[8].Value.ToString();
+                KySu ks1 = khs.laythongtin("", ksPh);
+                ksphCB.SelectedValue = ks1.ma;
+            }
+            else ksphCB.SelectedIndex = 0;
 
             if (dataGridView1.Rows[index].Cells[9].Value != null)
             {
@@ -585,18 +609,13 @@ namespace Quanly.managerhistory
             else datePH.Value = DateTimePicker.MinimumDateTime;
             
 
-            if (dataGridView1.Rows[index].Cells[8].Value != null)
-            {
-                string ksPh = dataGridView1.Rows[index].Cells[8].Value.ToString();
-                KySu ks1 = khs.laythongtin("", ksPh);
-                ksphCB.SelectedValue = ks1.ma;
-            }
-            else ksphCB.SelectedIndex = 0;
+            
+            
 
             if (dataGridView1.Rows[index].Cells[10].Value != null)
             {
                 string ttrPhLay = dataGridView1.Rows[index].Cells[10].Value.ToString();
-                HienTrang ht1 = hthd.laythongtin(0, ttrPhLay);
+                HienTrang ht1 = hthd.laythongtin(1, ttrPhLay);
                 string ht1m = ht1.ma.ToString();
                 tinhtranglayphCB.SelectedValue = ht1m;
             }
@@ -611,8 +630,13 @@ namespace Quanly.managerhistory
                 Seri sr = srhd.laythongtinma(srmayphlap);
                 string srm = sr.pk.ToString();
                 srlayphCB.SelectedValue = srm;
+                tralaicheckBox.Checked = false;
             }
-            else srlayphCB.SelectedIndex = 0;
+            else
+            {
+                srlayphCB.SelectedIndex = 0;
+                tralaicheckBox.Checked = true;
+            }
 
             NoiLayPTHandler vtrhd = new NoiLayPTHandler();
             if (dataGridView1.Rows[index].Cells[12].Value != null)
@@ -621,10 +645,12 @@ namespace Quanly.managerhistory
 
                 NoiLayPT nl = vtrhd.laythongtin("", vtrmoiPhlay);
                 vitrilaymCB.SelectedValue = nl.ma;
-            }
-            else vitrilaymCB.SelectedIndex = 0;
 
-            
+            }
+            else
+            {
+                vitrilaymCB.SelectedIndex = 0;
+            }
 
             if (dataGridView1.Rows[index].Cells[13].Value != null)
             {
@@ -635,13 +661,11 @@ namespace Quanly.managerhistory
 
             if (dataGridView1.Rows[index].Cells[14].Value != null)
             {
-                string ttrphlap = dataGridView1.Rows[index].Cells[14].Value.ToString();
-                HienTrang ht2 = hthd.laythongtin(0, ttrphlap);
-                string ht2m = ht2.ma.ToString();
-                tinhtranglapCB.SelectedValue = ht2m;
+                string xuatsu = dataGridView1.Rows[index].Cells[14].Value.ToString();
+                NoiLayPT nl1 = vtrhd.laythongtin("", xuatsu);
+                vtlapphCB.SelectedValue = nl1.ma;
             }
-            else tinhtranglapCB.SelectedIndex = 0;
-            
+            else vtlapphCB.SelectedIndex = 0;
 
             if (dataGridView1.Rows[index].Cells[15].Value != null)
             {
@@ -654,11 +678,12 @@ namespace Quanly.managerhistory
 
             if (dataGridView1.Rows[index].Cells[16].Value != null)
             {
-                string xuatsu = dataGridView1.Rows[index].Cells[16].Value.ToString();
-                NoiLayPT nl1 = vtrhd.laythongtin("", xuatsu);
-                vtlapphCB.SelectedValue = nl1.ma;
+                string ttrphlap = dataGridView1.Rows[index].Cells[16].Value.ToString();
+                HienTrang ht2 = hthd.laythongtin(1, ttrphlap);
+                string ht2m = ht2.ma.ToString();
+                tinhtranglapCB.SelectedValue = ht2m;
             }
-            else vtlapphCB.SelectedIndex = 0;
+            else tinhtranglapCB.SelectedIndex = 0;
 
             
             if(dataGridView1.Rows[index].Cells[17].Value !=  null)
@@ -702,6 +727,59 @@ namespace Quanly.managerhistory
         private void button1_Click(object sender, EventArgs e)
         {
             TraCuu();
+        }
+
+        private void EDIT_Click(object sender, EventArgs e)
+        {
+            int keyseri = this.keyseri;
+
+            string khachhang = ((KeyValuePair<string, string>)khachhangCB.SelectedItem).Key;
+
+            string lklay = null;
+            if (fullmaycheckBox.Checked) lklay = "";
+            else lklay = ((KeyValuePair<string, string>)malkCB.SelectedItem).Key;
+
+            string kslay = ((KeyValuePair<string, string>)kslayCB.SelectedItem).Key;
+            string lydolay = lydolaytxt.Text;
+            DateTime ngaylay = datelay.Value;
+            string ttrlay = ((KeyValuePair<string, string>)tinhtranglayCB.SelectedItem).Key;
+            DateTime ngayPh = datePH.Value;
+            MessageBox.Show(ngayPh.ToString());
+            string ksPh = ((KeyValuePair<string, string>)ksphCB.SelectedItem).Key;
+            string ttrPhLay = ((KeyValuePair<string, string>)tinhtranglayphCB.SelectedItem).Key;
+            string ghichuphlay = ghichutxt.Text;
+
+            string srmayphlap = "";
+            string vtrmoiPhlay = "";///
+
+            string ttrphlap = "";///
+            string srmayphlay = "";
+            string xuatsu = "";
+            string ghichuphlap = "";
+            if (!tralaicheckBox.Checked)
+            {
+                vtrmoiPhlay = ((KeyValuePair<string, string>)vitrilaymCB.SelectedItem).Key;
+                if (vtrmoiPhlay == "GĐ") srmayphlap = "";
+                else srmayphlap = ((KeyValuePair<string, string>)srlayphCB.SelectedItem).Key;
+
+                xuatsu = ((KeyValuePair<string, string>)vtlapphCB.SelectedItem).Key;
+                if (xuatsu == "GĐ") srmayphlay = "";
+                else srmayphlay = ((KeyValuePair<string, string>)serilapCB.SelectedItem).Key;
+
+                ttrphlap = ((KeyValuePair<string, string>)tinhtranglapCB.SelectedItem).Key;
+                ghichuphlap = ghichulaptxt.Text;
+            }
+
+            LichsumoiHandler lsm = new LichsumoiHandler();
+            lsm.sua(this.pk, khachhang, lklay, kslay, lydolay, ngaylay, ttrlay, ngayPh, ksPh, ttrPhLay,
+               srmayphlap, vtrmoiPhlay, ghichuphlay, ttrphlap, srmayphlay, xuatsu, ghichuphlap);
+            TraCuu();
+        
+        }
+
+        private void CLOSE_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
    

@@ -70,7 +70,7 @@ namespace Quanly.Handler
                 using (var cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT * from hientrang where (ma=@ma or @ma=0) and (ten=@ten or @ten='')";
+                    cmd.CommandText = "SELECT * from hientrang where (ma=@ma or @ma=1) and (ten=@ten or @ten='')";
                     cmd.Parameters.AddWithValue("ma", ma);
                     cmd.Parameters.AddWithValue("ten", ten);
 

@@ -78,10 +78,11 @@ namespace Quanly.Handler
                 }
             }
         }
-
-        public int sua(int pk, string hientrang, string khacphuc,
-            string kysu, DateTime thoigian, string ghichu, string khachhang, string vitri)
+        public int sua(int pk, string khachhang, string lklay, string kslay, string lydolay, DateTime ngaylay, string ttrlay
+            , DateTime ngayPh, string ksPh, string ttrPhLay, string srmayphlap, string vtrmoiPhlay, string ghichuphlay, string ttrphlap,
+            string srmayphlay, string xuatsu, string ghichuphlap)
         {
+
             int keyseri = 0;
             using (var conn = new NpgsqlConnection(connString))
             {
@@ -89,17 +90,27 @@ namespace Quanly.Handler
                 using (var cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "Update lichsu set hientrang=@hientrang," +
-                        "kysu=@kysu,khacphuc=@khacphuc,ghichu=@ghichu,khachhang=@khachhang,vitri=@vitri,thoigian=@thoigian" +
-                        " where pk=@pk RETURNING keyseri";
+                    cmd.CommandText = "UPDATE lichsum set khachhang=@khachhang,linhkienlay=@linhkienlay,kysulay=@kysulay,lydolay=@lydolay,ngaylay=@ngaylay" +
+                        ",tinhtranglay=@tinhtranglay,ngayphanhoi=@ngayphanhoi,kysuphanhoi=@kysuphanhoi,tinhtrangphlay=@tinhtrangphlay,serimayphlap=@serimayphlap,vitrimoiphlay=@vitrimoiphlay,ghichuphlay=@ghichuphlay," +
+                        "tinhtrangphlap=@tinhtrangphlap,serimayphlay=@serimayphlay,xuatsu=@xuatsu,ghichuphlap=@ghichuphlap where pk=@pk RETURNING keyseri";
+
                     cmd.Parameters.AddWithValue("pk", pk);
-                    cmd.Parameters.AddWithValue("thoigian", thoigian);
-                    cmd.Parameters.AddWithValue("khacphuc", khacphuc);
-                    cmd.Parameters.AddWithValue("hientrang", hientrang);
-                    cmd.Parameters.AddWithValue("ghichu", ghichu);
-                    cmd.Parameters.AddWithValue("kysu", kysu);
                     cmd.Parameters.AddWithValue("khachhang", khachhang);
-                    cmd.Parameters.AddWithValue("vitri", vitri);
+                    cmd.Parameters.AddWithValue("linhkienlay", lklay);
+                    cmd.Parameters.AddWithValue("kysulay", kslay);
+                    cmd.Parameters.AddWithValue("lydolay", lydolay);
+                    cmd.Parameters.AddWithValue("ngaylay", ngaylay);
+                    cmd.Parameters.AddWithValue("tinhtranglay", ttrlay);
+                    cmd.Parameters.AddWithValue("ngayphanhoi", ngayPh);
+                    cmd.Parameters.AddWithValue("kysuphanhoi", ksPh);
+                    cmd.Parameters.AddWithValue("tinhtrangphlay", ttrPhLay);
+                    cmd.Parameters.AddWithValue("serimayphlap", srmayphlap);
+                    cmd.Parameters.AddWithValue("vitrimoiphlay", vtrmoiPhlay);
+                    cmd.Parameters.AddWithValue("ghichuphlay", ghichuphlay);
+                    cmd.Parameters.AddWithValue("tinhtrangphlap", ttrphlap);
+                    cmd.Parameters.AddWithValue("serimayphlay", srmayphlay);
+                    cmd.Parameters.AddWithValue("xuatsu", xuatsu);
+                    cmd.Parameters.AddWithValue("ghichuphlap", ghichuphlap);
                     using (var reader = cmd.ExecuteReader())
                         while (reader.Read())
                         {
@@ -109,6 +120,8 @@ namespace Quanly.Handler
             }
             return keyseri;
         }
+
+        
 
         public void xoa(int pk)
         {

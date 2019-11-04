@@ -224,6 +224,7 @@
             this.CLOSE.TabIndex = 34;
             this.CLOSE.Text = "CLOSE";
             this.CLOSE.UseVisualStyleBackColor = false;
+            this.CLOSE.Click += new System.EventHandler(this.CLOSE_Click);
             // 
             // EDIT
             // 
@@ -234,6 +235,7 @@
             this.EDIT.TabIndex = 33;
             this.EDIT.Text = "EDIT";
             this.EDIT.UseVisualStyleBackColor = false;
+            this.EDIT.Click += new System.EventHandler(this.EDIT_Click);
             // 
             // ADD
             // 
