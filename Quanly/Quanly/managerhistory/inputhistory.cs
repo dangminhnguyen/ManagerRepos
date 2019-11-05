@@ -780,6 +780,7 @@ namespace Quanly.managerhistory
         private void CLOSE_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
     }
    
