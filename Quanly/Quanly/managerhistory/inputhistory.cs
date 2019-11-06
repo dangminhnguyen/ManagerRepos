@@ -52,6 +52,9 @@ namespace Quanly.managerhistory
             InitializeComponent();
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView2.MultiSelect = false;
+
             this.keyseri = x;
             if (tralaicheckBox.Checked)
             {
@@ -101,6 +104,7 @@ namespace Quanly.managerhistory
             getKhachhang();
             getNoiLay();
             getInitDataGridView(0);
+            tracuulinhkien();
         }
         
         private void getNoiLay()
@@ -436,6 +440,31 @@ namespace Quanly.managerhistory
             lsm.them(this.keyseri, khachhang, lklay, kslay, lydolay, ngaylay, ttrlay, ngayPh, ksPh, ttrPhLay,
                srmayphlap, vtrmoiPhlay, ghichuphlay, ttrphlap, srmayphlay, xuatsu, ghichuphlap);
             TraCuu();
+            if(lklay != null && lklay != "")
+            {
+                ThongkeLKHandler tkh = new ThongkeLKHandler();
+                bool check = tkh.kiemtra(this.keyseri, lklay);
+                if (check)
+                {
+                    tkh.sua(this.keyseri, lklay, ttrPhLay, srmayphlap, vtrmoiPhlay, srmayphlay, xuatsu, ttrphlap);
+                }
+                else
+                {
+                    tkh.them(this.keyseri, lklay, ttrPhLay, srmayphlap, vtrmoiPhlay, srmayphlay, xuatsu, ttrphlap);
+                }
+            }
+
+            
+            
+
+
+        }
+
+
+        private void capnhatlinhkiencuamay()
+        {
+            ThongkeLKHandler tkh = new ThongkeLKHandler();
+
         }
 
         private void dataGridView1_Click(object sender, EventArgs e)
@@ -782,6 +811,80 @@ namespace Quanly.managerhistory
             this.Close();
 
         }
+
+        private void malkCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string lklay = ((KeyValuePair<string, string>)malkCB.SelectedItem).Key;
+            ThongkeLKHandler tkl = new ThongkeLKHandler();
+            thongkelinhkien tk = new thongkelinhkien();
+            if(lklay == "")
+            {
+                vitrilkLB.Text = "";
+            }
+            else
+            {
+                tk = tkl.laythongtin(this.keyseri, lklay);
+                NoiLayPTHandler nlpt = new NoiLayPTHandler();
+                NoiLayPT nl = nlpt.laythongtin(tk.xuatsu, "");
+                vitrilkLB.Text = nl.ten;
+            }
+            
+        }
+
+        private void dataGridView2_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+
+        }
+        private void tracuulinhkien()
+        {
+            ThongkeLKHandler tkh = new ThongkeLKHandler();
+            List<thongkelinhkien> llk = tkh.layds();
+            foreach(thongkelinhkien tk in llk)
+            {
+                LinhKienHandle lkh = new LinhKienHandle();
+                string model = ((KeyValuePair<string, string>)modelCB.SelectedItem).Key;
+                linhkien lk = lkh.laythongtin(model, tk.ma, "");
+                HienTrangHandler hth = new HienTrangHandler();
+
+                int tinhtrang = 0;
+                Int32.TryParse(tk.tinhtrang, out tinhtrang);
+                string hientrang = "";
+                if(tinhtrang != 0)
+                {
+                    HienTrang ht = hth.laythongtin(tinhtrang, "");
+                    hientrang = ht.ten;
+
+                }
+                
+                int tinhtrang2 = 0;
+                Int32.TryParse(tk.ttrangmayve, out tinhtrang2);
+                string hientrang2 = "";
+                if(tinhtrang2 != 0)
+                {
+                    HienTrang ht2 = hth.laythongtin(tinhtrang2, "");
+                    hientrang2 = ht2.ten;
+                }
+                
+
+
+                NoiLayPTHandler nlpt = new NoiLayPTHandler();
+                NoiLayPT nl1 = nlpt.laythongtin(tk.vitrimoi, "");
+                NoiLayPT nl2 = nlpt.laythongtin(tk.xuatsu, "");
+
+
+                SeriHandler serihd = new SeriHandler();
+                int sr1 = 0;
+                Int32.TryParse(tk.maymoi, out sr1);
+                Seri srmoi= serihd.laythongtin(sr1);
+                int sr2 = 0;
+                Int32.TryParse(tk.maymoi, out sr2);
+                Seri srve = serihd.laythongtin(sr2);
+
+                dataGridView2.Rows.Add(tk.keyseri,tk.ma, lk.ten, hientrang, nl1.ten, srmoi.ten, srve.ten, nl2.ten, hientrang2);
+            }
+
+        }
+
     }
    
 }

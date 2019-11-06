@@ -76,6 +76,7 @@
     <Compile Include="Handler\LichsumoiHandler.cs" />
     <Compile Include="Handler\LinhKienHandle.cs" />
     <Compile Include="Handler\NoiLayPTHandler.cs" />
+    <Compile Include="Handler\ThongkeLKHandler.cs" />
     <Compile Include="Handler\VitriHandler.cs" />
     <Compile Include="managerhistory\inputhistory.cs">
       <SubType>Form</SubType>
@@ -86,6 +87,7 @@
     <Compile Include="Model\linhkien.cs" />
     <Compile Include="Model\NoiLayPT.cs" />
     <Compile Include="Model\RecordNew.cs" />
+    <Compile Include="Model\thongkelinhkien.cs" />
     <Compile Include="Model\Vitri.cs" />
     <Compile Include="Quanlylinhkien\Linhkien.cs">
       <SubType>Form</SubType>

@@ -108,20 +108,23 @@
             this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.dateFrom = new System.Windows.Forms.DateTimePicker();
             this.dateTo = new System.Windows.Forms.DateTimePicker();
             this.lable90 = new System.Windows.Forms.Label();
             this.lable89 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vitrilkLB = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -441,7 +444,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(141, 41);
+            this.label9.Location = new System.Drawing.Point(79, 41);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(50, 13);
             this.label9.TabIndex = 62;
@@ -450,17 +453,18 @@
             // malkCB
             // 
             this.malkCB.FormattingEnabled = true;
-            this.malkCB.Location = new System.Drawing.Point(197, 38);
+            this.malkCB.Location = new System.Drawing.Point(135, 37);
             this.malkCB.Name = "malkCB";
-            this.malkCB.Size = new System.Drawing.Size(182, 21);
+            this.malkCB.Size = new System.Drawing.Size(138, 21);
             this.malkCB.TabIndex = 61;
+            this.malkCB.SelectedIndexChanged += new System.EventHandler(this.malkCB_SelectedIndexChanged);
             // 
             // fullmaycheckBox
             // 
             this.fullmaycheckBox.AutoSize = true;
             this.fullmaycheckBox.Checked = true;
             this.fullmaycheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.fullmaycheckBox.Location = new System.Drawing.Point(62, 40);
+            this.fullmaycheckBox.Location = new System.Drawing.Point(9, 40);
             this.fullmaycheckBox.Name = "fullmaycheckBox";
             this.fullmaycheckBox.Size = new System.Drawing.Size(64, 17);
             this.fullmaycheckBox.TabIndex = 63;
@@ -487,6 +491,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.vitrilkLB);
             this.groupBox3.Controls.Add(this.tinhtranglayCB);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.fullmaycheckBox);
@@ -884,6 +889,33 @@
             this.tabPage2.Text = "Thống kê linh kiện";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn2,
+            this.Column20,
+            this.Column21,
+            this.Column19,
+            this.Column24,
+            this.Column22,
+            this.Column23,
+            this.Column25,
+            this.Column26});
+            this.dataGridView2.GridColor = System.Drawing.SystemColors.HighlightText;
+            this.dataGridView2.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.Size = new System.Drawing.Size(761, 407);
+            this.dataGridView2.TabIndex = 72;
+            this.dataGridView2.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView2_RowPrePaint);
+            // 
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -939,36 +971,14 @@
             this.lable89.TabIndex = 81;
             this.lable89.Text = "To:";
             // 
-            // dataGridView2
+            // vitrilkLB
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.Column20,
-            this.Column21,
-            this.Column19,
-            this.Column22,
-            this.Column23});
-            this.dataGridView2.GridColor = System.Drawing.SystemColors.HighlightText;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 6);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(761, 407);
-            this.dataGridView2.TabIndex = 72;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "pk";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.vitrilkLB.AutoSize = true;
+            this.vitrilkLB.Location = new System.Drawing.Point(279, 40);
+            this.vitrilkLB.Name = "vitrilkLB";
+            this.vitrilkLB.Size = new System.Drawing.Size(41, 13);
+            this.vitrilkLB.TabIndex = 66;
+            this.vitrilkLB.Text = "label16";
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -995,6 +1005,12 @@
             this.Column19.Name = "Column19";
             this.Column19.ReadOnly = true;
             // 
+            // Column24
+            // 
+            this.Column24.HeaderText = "Vị trí mới";
+            this.Column24.Name = "Column24";
+            this.Column24.ReadOnly = true;
+            // 
             // Column22
             // 
             this.Column22.HeaderText = "Seri máy mới lắp vào";
@@ -1006,6 +1022,18 @@
             this.Column23.HeaderText = "Seri máy về";
             this.Column23.Name = "Column23";
             this.Column23.ReadOnly = true;
+            // 
+            // Column25
+            // 
+            this.Column25.HeaderText = "Xuất sứ";
+            this.Column25.Name = "Column25";
+            this.Column25.ReadOnly = true;
+            // 
+            // Column26
+            // 
+            this.Column26.HeaderText = "Tình trạng";
+            this.Column26.Name = "Column26";
+            this.Column26.ReadOnly = true;
             // 
             // inputhistory
             // 
@@ -1149,12 +1177,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Label vitrilkLB;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column25;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column26;
     }
 }
