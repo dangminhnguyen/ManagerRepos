@@ -1,0 +1,165 @@
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\bin\Debug\Quanly.exe.config
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\bin\Debug\Quanly.exe
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\bin\Debug\Quanly.pdb
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\bin\Debug\Npgsql.dll
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\bin\Debug\Npgsql.xml
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.Dangnhap.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.Doimatkhau.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.Main.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.NhapDuLieuHangLoat.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanlyDongMay.ChinhSuaDongMay.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanlyHienTrang.QuanLyHientrang.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyKhachHang.ChinhSuaKhachHang.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanlyKH.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyKhachHang.ThemKhachHang.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyKySu.ChinhSuaKySu.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyKySu.QuanLyKySu.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyKySu.ThemKySu.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyLoaiMay.ChinhSuaLoaiMay.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.Quanlymay.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.Properties.Resources.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyLoaiMay.ThemLoaiMay.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanlyDongMay.QuanlyDongMay.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanlyDongMay.ThemDongMay.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLySeri.ChinhSuaSeri.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLySeri.QuanLySeri.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLySeri.ThemSeri.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyTaiKhoan.QuanLyTaiKhoan.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyTaiKhoan.ThemTaiKhoan.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.SuaHienTrang.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.Themhientrang.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.Xemluocsu.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.XuatNhapForm.Nhaptheomay.resources
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.csproj.GenerateResource.Cache
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.exe
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Quanly\obj\Debug\Quanly.pdb
+D:\work\Visual\Project\Projects\Quanly\Quanly\bin\Debug\Quanly.exe.config
+D:\work\Visual\Project\Projects\Quanly\Quanly\bin\Debug\Quanly.exe
+D:\work\Visual\Project\Projects\Quanly\Quanly\bin\Debug\Quanly.pdb
+D:\work\Visual\Project\Projects\Quanly\Quanly\bin\Debug\Npgsql.dll
+D:\work\Visual\Project\Projects\Quanly\Quanly\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\work\Visual\Project\Projects\Quanly\Quanly\bin\Debug\Npgsql.xml
+D:\work\Visual\Project\Projects\Quanly\Quanly\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.Dangnhap.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.Doimatkhau.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.Main.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.NhapDuLieuHangLoat.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanlyDongMay.ChinhSuaDongMay.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanlyHienTrang.QuanLyHientrang.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyKhachHang.ChinhSuaKhachHang.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanlyKH.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyKhachHang.ThemKhachHang.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyKySu.ChinhSuaKySu.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyKySu.QuanLyKySu.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyKySu.ThemKySu.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyLoaiMay.ChinhSuaLoaiMay.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.Quanlymay.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.Properties.Resources.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyLoaiMay.ThemLoaiMay.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanlyDongMay.QuanlyDongMay.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanlyDongMay.ThemDongMay.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLySeri.ChinhSuaSeri.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLySeri.QuanLySeri.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLySeri.ThemSeri.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyTaiKhoan.QuanLyTaiKhoan.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.QuanLyTaiKhoan.ThemTaiKhoan.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.SuaHienTrang.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.Themhientrang.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.Xemluocsutheongay.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.Xemluocsutheomay.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.Xemluocsu.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.XuatNhapForm.Nhaptheomay.resources
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.csproj.GenerateResource.cache
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.csproj.CoreCompileInputs.cache
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.csproj.CopyComplete
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.exe
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.pdb
+D:\work\Visual\Project\Projects\Quanly\Quanly\obj\Debug\Quanly.Config.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\Quanly.exe.config
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\Quanly.exe
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\Quanly.pdb
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\Npgsql.dll
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\Npgsql.xml
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.csprojAssemblyReference.cache
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Config.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Dangnhap.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Doimatkhau.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Main.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.NhapDuLieuHangLoat.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanlyDongMay.ChinhSuaDongMay.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanlyHienTrang.QuanLyHientrang.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyKhachHang.ChinhSuaKhachHang.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanlyKH.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyKhachHang.ThemKhachHang.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyKySu.ChinhSuaKySu.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyKySu.QuanLyKySu.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyKySu.ThemKySu.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyLoaiMay.ChinhSuaLoaiMay.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Quanlymay.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Properties.Resources.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyLoaiMay.ThemLoaiMay.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanlyDongMay.QuanlyDongMay.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanlyDongMay.ThemDongMay.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLySeri.ChinhSuaSeri.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLySeri.QuanLySeri.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLySeri.ThemSeri.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyTaiKhoan.QuanLyTaiKhoan.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyTaiKhoan.ThemTaiKhoan.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.SuaHienTrang.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Themhientrang.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Xemluocsutheongay.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Xemluocsutheomay.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Xemluocsu.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.XuatNhapForm.Nhaptheomay.resources
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.csproj.GenerateResource.cache
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.csproj.CoreCompileInputs.cache
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.csproj.CopyComplete
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.exe
+C:\Nguyên\nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.pdb
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\Quanly.exe.config
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\Quanly.exe
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\Quanly.pdb
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\Npgsql.dll
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\Npgsql.xml
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.csprojAssemblyReference.cache
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Config.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Dangnhap.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Doimatkhau.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Main.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.NhapDuLieuHangLoat.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanlyDongMay.ChinhSuaDongMay.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanlyHienTrang.QuanLyHientrang.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyKhachHang.ChinhSuaKhachHang.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanlyKH.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyKhachHang.ThemKhachHang.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyKySu.ChinhSuaKySu.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyKySu.QuanLyKySu.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyKySu.ThemKySu.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyLoaiMay.ChinhSuaLoaiMay.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Quanlymay.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Properties.Resources.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyLoaiMay.ThemLoaiMay.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanlyDongMay.QuanlyDongMay.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanlyDongMay.ThemDongMay.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLySeri.ChinhSuaSeri.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLySeri.QuanLySeri.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLySeri.ThemSeri.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyTaiKhoan.QuanLyTaiKhoan.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.QuanLyTaiKhoan.ThemTaiKhoan.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.SuaHienTrang.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Themhientrang.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Xemluocsutheongay.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Xemluocsutheomay.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.Xemluocsu.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.XuatNhapForm.Nhaptheomay.resources
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.csproj.GenerateResource.cache
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.csproj.CoreCompileInputs.cache
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.csproj.CopyComplete
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.exe
+D:\Desktop\Nguyen\backup postgresql\New folder\complete\Quanly-v1\Quanly\Quanly\obj\Debug\Quanly.pdb

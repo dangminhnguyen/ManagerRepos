@@ -1,0 +1,20 @@
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Test\bin\Release\Test.exe.config
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Test\bin\Release\Test.exe
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Test\bin\Release\Test.pdb
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Test\obj\Release\Test.exe
+C:\Users\Sleepybear\documents\visual studio 2017\Projects\Quanly\Test\obj\Release\Test.pdb
+C:\Users\Sleepybear\Documents\Visual Studio 2017\Projects\Quanly\Test\obj\Release\Test.csprojResolveAssemblyReference.cache
+D:\work\Visual\Project\Projects\Quanly\Test\bin\Release\Test.exe.config
+D:\work\Visual\Project\Projects\Quanly\Test\bin\Release\Test.exe
+D:\work\Visual\Project\Projects\Quanly\Test\bin\Release\Test.pdb
+D:\work\Visual\Project\Projects\Quanly\Test\obj\Release\Test.csprojAssemblyReference.cache
+D:\work\Visual\Project\Projects\Quanly\Test\obj\Release\Test.csproj.CoreCompileInputs.cache
+D:\work\Visual\Project\Projects\Quanly\Test\obj\Release\Test.exe
+D:\work\Visual\Project\Projects\Quanly\Test\obj\Release\Test.pdb
+C:\Users\nguyen dang\Desktop\backup postgresql\Quanly\Quanly\Test\bin\Release\Test.exe.config
+C:\Users\nguyen dang\Desktop\backup postgresql\Quanly\Quanly\Test\bin\Release\Test.exe
+C:\Users\nguyen dang\Desktop\backup postgresql\Quanly\Quanly\Test\bin\Release\Test.pdb
+C:\Users\nguyen dang\Desktop\backup postgresql\Quanly\Quanly\Test\obj\Release\Test.csprojAssemblyReference.cache
+C:\Users\nguyen dang\Desktop\backup postgresql\Quanly\Quanly\Test\obj\Release\Test.csproj.CoreCompileInputs.cache
+C:\Users\nguyen dang\Desktop\backup postgresql\Quanly\Quanly\Test\obj\Release\Test.exe
+C:\Users\nguyen dang\Desktop\backup postgresql\Quanly\Quanly\Test\obj\Release\Test.pdb

@@ -1,0 +1,1025 @@
+--
+-- PostgreSQL database cluster dump
+--
+
+-- Started on 2019-05-27 09:21:40
+
+SET default_transaction_read_only = off;
+
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+
+--
+-- Roles
+--
+
+CREATE ROLE postgres;
+ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'md532d003dcf8fc8841da68047c18924a96';
+
+
+
+
+
+
+--
+-- Database creation
+--
+
+REVOKE CONNECT,TEMPORARY ON DATABASE template1 FROM PUBLIC;
+GRANT CONNECT ON DATABASE template1 TO PUBLIC;
+
+
+\connect postgres
+
+SET default_transaction_read_only = off;
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.3
+-- Dumped by pg_dump version 10.3
+
+-- Started on 2019-05-27 09:21:40
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 2860 (class 0 OID 0)
+-- Dependencies: 2859
+-- Name: DATABASE postgres; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON DATABASE postgres IS 'default administrative connection database';
+
+
+--
+-- TOC entry 2 (class 3079 OID 12924)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2862 (class 0 OID 0)
+-- Dependencies: 2
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- TOC entry 1 (class 3079 OID 16384)
+-- Name: adminpack; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2863 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 197 (class 1259 OID 16393)
+-- Name: hientrang; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.hientrang (
+    ma integer NOT NULL,
+    ten text
+);
+
+
+ALTER TABLE public.hientrang OWNER TO postgres;
+
+--
+-- TOC entry 198 (class 1259 OID 16399)
+-- Name: hientrang_ma_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.hientrang_ma_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.hientrang_ma_seq OWNER TO postgres;
+
+--
+-- TOC entry 2864 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: hientrang_ma_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.hientrang_ma_seq OWNED BY public.hientrang.ma;
+
+
+--
+-- TOC entry 199 (class 1259 OID 16401)
+-- Name: khachhang; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.khachhang (
+    ma text,
+    ten text,
+    thongtin text
+);
+
+
+ALTER TABLE public.khachhang OWNER TO postgres;
+
+--
+-- TOC entry 200 (class 1259 OID 16407)
+-- Name: kysu; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.kysu (
+    ma text,
+    ten text
+);
+
+
+ALTER TABLE public.kysu OWNER TO postgres;
+
+--
+-- TOC entry 201 (class 1259 OID 16413)
+-- Name: lichsu; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.lichsu (
+    pk bigint NOT NULL,
+    keyseri bigint,
+    hientrang text,
+    khacphuc text,
+    kysu text,
+    ghichu text,
+    thoigian timestamp without time zone
+);
+
+
+ALTER TABLE public.lichsu OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 16419)
+-- Name: lichsu_pk_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.lichsu_pk_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.lichsu_pk_seq OWNER TO postgres;
+
+--
+-- TOC entry 2865 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: lichsu_pk_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.lichsu_pk_seq OWNED BY public.lichsu.pk;
+
+
+--
+-- TOC entry 203 (class 1259 OID 16421)
+-- Name: loaimay; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.loaimay (
+    ma text NOT NULL,
+    ten text
+);
+
+
+ALTER TABLE public.loaimay OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 16427)
+-- Name: model; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.model (
+    ma text,
+    ten text,
+    mamay text
+);
+
+
+ALTER TABLE public.model OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 16433)
+-- Name: seri; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.seri (
+    ma text,
+    ten text,
+    mamodel text,
+    mamay text,
+    hientrang bigint,
+    khachhang text,
+    pk bigint NOT NULL,
+    ngaylapdat timestamp without time zone
+);
+
+
+ALTER TABLE public.seri OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 16439)
+-- Name: seri_pk_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.seri_pk_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seri_pk_seq OWNER TO postgres;
+
+--
+-- TOC entry 2866 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: seri_pk_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.seri_pk_seq OWNED BY public.seri.pk;
+
+
+--
+-- TOC entry 207 (class 1259 OID 16441)
+-- Name: taikhoan; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.taikhoan (
+    taikhoan text,
+    matkhau text,
+    vaitro text
+);
+
+
+ALTER TABLE public.taikhoan OWNER TO postgres;
+
+--
+-- TOC entry 2711 (class 2604 OID 16447)
+-- Name: hientrang ma; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.hientrang ALTER COLUMN ma SET DEFAULT nextval('public.hientrang_ma_seq'::regclass);
+
+
+--
+-- TOC entry 2712 (class 2604 OID 16448)
+-- Name: lichsu pk; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lichsu ALTER COLUMN pk SET DEFAULT nextval('public.lichsu_pk_seq'::regclass);
+
+
+--
+-- TOC entry 2713 (class 2604 OID 16449)
+-- Name: seri pk; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.seri ALTER COLUMN pk SET DEFAULT nextval('public.seri_pk_seq'::regclass);
+
+
+--
+-- TOC entry 2843 (class 0 OID 16393)
+-- Dependencies: 197
+-- Data for Name: hientrang; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.hientrang (ma, ten) FROM stdin;
+8	Ngưng hoạt động
+9	Bảo trì 
+10	Hoạt động
+11	Chưa Biết
+\.
+
+
+--
+-- TOC entry 2845 (class 0 OID 16401)
+-- Dependencies: 199
+-- Data for Name: khachhang; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.khachhang (ma, ten, thongtin) FROM stdin;
+K1	Kho Gò Vấp	\N
+K2	Kho vĩnh viễn	\N
+NĐ2	Bệnh Viện Nhi đồng 2	\N
+BD	Bệnh Viện Bình Dân	\N
+DL	Bệnh Viện Da Liễu	\N
+HH	Bệnh viện MEDIC Hoà Hảo	\N
+548	Phòng Khám Đa Khoa 548	\N
+MĐ	Phòng Khám Đa Khoa Mỹ Đức	\N
+ABC	Phòng Khám ABC -Trần Diệp Khanh	\N
+TA	Trung Tâm Y Tế Thuận An	\N
+TTT	Phòng Khám Tâm Thiện Tâm	\N
+NTU	Phòng Khám Nam Tân Uyên	\N
+CT	Phòng Khám Châu Thành	\N
+TĐ	Phòng Khám Tâm Đức	\N
+TWH	Bệnh Viện Trung Ương Huế	\N
+ĐHYH	Đại học Y Huế	\N
+C	Bệnh Viện C Đà Nẵng	\N
+SN	Bệnh Viện Sản Nhi Đà Nẵng	\N
+ĐKĐN	Bệnh Viện Đa Khoa Đà Nẵng	\N
+NĐH	Phòng Khám Đa Khoa Nhân Đức Hạnh	\N
+333	Bệnh Viện 333 Đăk Lăk	\N
+BH	Bệnh Viện Buôn Hồ Đăk Lăk	\N
+KN	Bệnh Viện Krong Năng Đăk Lăk	\N
+KP	Bệnh Viện Krong Pak Đăk Lăk	\N
+BĐ2	Bệnh Viện Buôn Đôn Đăk Lăk	\N
+EK	Bệnh Viện EAKAR Đăk Lăk	\N
+MĐR	Bệnh Viện M'ĐRAK Đăk Lăk	\N
+EHL	Bệnh Viện EAH'LEO Đăk Lăk	\N
+LAK	Bệnh Viện Lăk Đăk Lăk	\N
+LP	Bệnh Viện Lao Phổi Đăk Lăk	\N
+TTTP	Bệnh Viện Tâm Thần TP.HCM	\N
+TTĐL	Bệnh Viện Tâm Thần Đăk Lăk	\N
+CK	Bệnh Viện CuKuin Đăk Lăk	\N
+HG	Bệnh Viện Đa Khoa Hậu Giang	\N
+BK	Bệnh Viện Bắc Kạn	\N
+BR	Bệnh Viện Bà Rịa	\N
+NT	Bệnh Viện Ninh Thuận	\N
+TV	Bệnh Viện Đa Khoa Trà Vinh	\N
+ĐL	Bệnh Viện Đa Khoa Đăk Lăk	\N
+V	Phòng Khám Đại Học Vinh	\N
+BĐ1	Bệnh Viện Đa Khoa Bình Định	\N
+BĐ3	Trung Tâm Y Tế Buôn Đôn	\N
+ES	Trung Tâm Y Tế EASUP	\N
+TP	Cty TM TBYT Toàn Phát	\N
+TTPCSR	Trung Tâm Phòng Chống Sốt Rét ĐăkLăk	\N
+LATT	Bệnh Viện Đa Khoa Tân Trụ Long An	\N
+CTĐP	Cty Đất Phát	\N
+ĐKBD	Bệnh Viện Đa Khoa Bình Dương	\N
+BTBA	Phòng Khám Bác Ái Bình Thuận	\N
+CG	Bệnh Viện Bình Dân Chợ Gạo	\N
+CTDAMECO	Cty DANAMEO	\N
+BSHIEN	Phòng Khám BS Hiến	\N
+CTVT	Cty Việt Tân	\N
+PKQ4	Phòng Khám Quận 4	\N
+ATĐT	Phòng Khám Anh Thịnh Đức Trọng	\N
+VTH	Phòng Khám Việt Thái Hoà	\N
+VA	Phòng Khám Vạn An	\N
+CTHMP	Cty Hoàng Mỹ Phát	\N
+CTYTSG	Cty Y Tế SG	\N
+BH2	Trung Tâm Y Tế Buôn Hồ	\N
+EK2	Trung Tâm Y Tế EAKAR	\N
+AIDS	Trung Tâm HIV-AIDS	\N
+TBVL	Phòng Khám Tam Bình Vĩnh Long	\N
+PKTĐ	Phòng Khám Đa Khoa Tâm Đức	\N
+PKBH	Phòng khám Buôn Hồ Đak lak	
+\.
+
+
+--
+-- TOC entry 2846 (class 0 OID 16407)
+-- Dependencies: 200
+-- Data for Name: kysu; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.kysu (ma, ten) FROM stdin;
+KS2	Võ Trung Cường
+KS3	Phan Thiên Hoàng
+KS4	Trương Hoàng Tuấn Anh
+KS5	Đặng Minh Nguyên
+KS1	Trần Vũ Sơn
+KS6	KS Vũ
+KS7	KS. Đức Vũ
+\.
+
+
+--
+-- TOC entry 2847 (class 0 OID 16413)
+-- Dependencies: 201
+-- Data for Name: lichsu; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.lichsu (pk, keyseri, hientrang, khacphuc, kysu, ghichu, thoigian) FROM stdin;
+7	7	Hoạt động		KS1	Đã thêm mới bo REF(S/n: 123456)	2018-04-18 10:00:00
+59	130	Ngưng hoạt động		KS6	KS lấy Board mạch cảm biễn Áp lực( Pressure Board), số S/N Board: A5h1347016	2016-09-26 11:15:57
+9	8	Chưa Biết	Chưa biết	KS1	Ngày lắp: 01/10/2013	2018-05-08 11:24:59.085393
+60	130	Ngưng hoạt động		KS1	 Board mạch cảm biễn Áp lực( Pressure Board), số S/N Board: A5h1347016 được trả lại và lắp vào máy	2016-09-12 11:16:53
+61	130	Hoạt động		KS6	Xuất máy cho bệnh viện TW Huế	2016-12-15 11:17:27
+13	9	Chưa Biết	Chua Biet	KS1	Ngay lap: 01/10/2013	2018-05-08 11:42:00.896838
+20	19	Hoạt động		KS4		2018-11-13 11:09:00.196057
+24	21	Hoạt động		KS4		2016-12-23 13:07:29
+25	22	Hoạt động		KS4		2016-08-30 13:09:46
+26	18	Hoạt động		KS4		2018-11-13 13:11:51.579676
+28	73	Hoạt động		KS1		2018-11-13 13:23:15.093771
+29	13	Hoạt động		KS4		2018-11-13 13:24:44.260871
+30	14	Hoạt động		KS4		2018-11-13 13:25:07.621207
+31	15	Hoạt động		KS4		2018-11-13 13:25:27.356336
+32	16	Hoạt động		KS4		2018-11-13 13:25:55.101923
+33	17	Hoạt động		KS4		2018-11-13 13:26:33.296108
+27	64	Hoạt động		KS3		2018-11-13 13:22:51.273409
+35	132	Hoạt động		KS1	TTPSN DA NANG	2011-10-17 10:40:06
+36	132	Ngưng hoạt động		KS1	ĐEM TỪ BV PHỤ SẢN VỀ CÔNG TY	2017-11-30 10:41:12
+37	132	Ngưng hoạt động		KS1	Nhập kho: Thiếu Crack, hoạt động bình thường	2017-12-04 10:42:05
+62	131	Ngưng hoạt động		KS7	Xuất cho ki sư test máy	2017-03-27 11:18:14
+40	133	Hoạt động		KS1	BV C ĐÀ NẴNG 	2012-12-03 10:45:12
+42	133	Ngưng hoạt động		KS1	Gởi về lại cty (không xác định được thời gian)	2018-11-15 10:46:38.483808
+43	133	Hoạt động		KS1	GỬI BS DŨNG BV C ĐÀ NẴNG	2014-02-25 10:48:33
+44	134	Hoạt động		KS1	BV C DA NANG	2012-12-05 10:49:36
+45	134	Ngưng hoạt động		KS1	GỬI LẠI CÔNG TY, NHẬP KHO , KHAY BỊ LỖI ĐANG CHƠ KS SỬA	2017-10-06 10:50:08
+46	135	Ngưng hoạt động		KS1	CÓ 1 KHAY B TRẢ VÔ KS THÁO RỜI ĐANG KiỂM TRA, CHƯA TRẢ LẠI KHO. LẤY BV PHỤ SẢN NHI VỀ	2014-04-25 10:51:36
+47	135	Ngưng hoạt động		KS1	KS VŨ TRẢ LẠI KHO CTY \nTÌNH TRANG: HƯ HỎNG DO SD LÂU, MÁY VẪN HoẠT ĐỘNG NHƯNG SAI CHỨC NĂNG, THIẾU NẮP DO BV SẢN NHI LÀM MẤT, CHỜ KT SỬA CHỮA, TẠM GIAO LẠI KHO	2014-06-12 10:51:54
+48	136	Hoạt động		KS1	GỬI CHO ANH CHĨNH BỆNH VIỆN C ĐÀ NẴNG	2015-10-26 10:56:28
+49	137	Hoạt động		KS1	Xuất máy đi bệnh viện TW Huế	2016-12-15 10:57:27
+50	138	Hoạt động		KS1	Gửi ra bv Phụ Sản Nhi ĐN- bs. Tuệ	2017-03-31 10:58:08
+51	128	Hoạt động		KS1	DK DA NANG(PHỤ SẢN NHI)	2010-12-20 11:01:29
+52	128	Ngưng hoạt động		KS1	VE CONG TY ( KS chưa trả kho)	2013-04-29 11:01:50
+54	128	Ngưng hoạt động		KS1	Trả Cell Counter Amplifier Board, LS-DACQ Board with DIMM-PC, Bộ Nguồn, Buồng RBC. 	2013-09-23 11:02:42
+55	128	Ngưng hoạt động		KS6	Mượn cụm điều khiển kim hút mẫu ( X-Y Modul )để thử máy Abacus 5 của Bệnh Viện Phụ sản Nhi Đà nẵng(SN: 510438)	2015-11-30 11:03:07
+53	128	Ngưng hoạt động		KS1	Lấy Cell Counter Amplifier Board, LS-DACQ Board with DIMM-PC, Bộ Nguồn, Buồng RBC. 	2013-06-19 11:02:19
+56	128	Ngưng hoạt động		KS6	Nhập kho ,  đã lắp lại đầy đủ phụ tùng đã mượn trước đó , nhưng máy k chạy được	2016-07-30 11:04:17
+57	128	Hoạt động		KS1	Máy gửi ra lại BV PSN Dà nẵng- bs Tuệ	2017-11-05 11:04:43
+58	129	Hoạt động		KS1	Gởi ra C Đà Nẵng 	2013-08-01 11:05:27
+77	140	Ngưng hoạt động		KS6	LẤY LASER HEAD 	2014-03-07 11:48:30
+63	131	Hoạt động		KS7	Gửi ra bv Phụ Sản Nhi ĐN- bs. Tuệ	2017-03-31 11:18:45
+64	139	Hoạt động		KS1	C DA NANG	2010-04-07 11:21:39
+65	139	Bảo trì 		KS1	O CTY	2010-08-11 11:22:14
+66	139	Ngưng hoạt động		KS1	XUAT TRA HANG	2010-12-20 11:23:23
+67	139	Ngưng hoạt động		KS1	Lấy buồng WBC thay cho máy 510126	2012-10-10 11:24:07
+68	139	Ngưng hoạt động		KS1	 lấy Modum Xi lanh, board X, Y sensor, 4 đầu Heard để thay thế Bệnh viện Phụ Sản Nhi DN ('Kiĩ sư Vũ nhờ Kĩ sư sơn)	2016-06-16 11:24:38
+69	139	Ngưng hoạt động		KS3	Lấy 5 cuộn coi Selenol, 5 đầu head 3, 3 đầu head 2 để lắp máy Anh Khánh Buôn Hồ	2017-12-21 11:25:33
+70	139	Ngưng hoạt động		KS6	Trả lại Schott syringe withpiston white nhưng bị hư lấy từ bv C đà nẵng đem về	2018-04-27 11:25:59
+71	139	Ngưng hoạt động		KS3	Lấy máy mượn bộ phận hút mẫu, bộ Pump lắp cho máy A 5 :510293	2018-05-18 11:26:47
+72	140	Hoạt động		KS1	C DA NANG 	2010-11-11 11:45:18
+74	140	Ngưng hoạt động		KS1	VE CONG TY	2012-12-09 11:47:05
+73	140	Hoạt động		KS1	PS NHI (không có thời gian)	2018-11-15 11:45:50.531973
+75	140	Hoạt động		KS1	C DA NANG	2012-12-01 11:47:38
+76	140	Ngưng hoạt động		KS1	C DA NANG TRẢ ( SN NGOÀI THÙNG: 510394)	2013-09-23 11:48:05
+78	140	Ngưng hoạt động		KS6	LẤY LASER HEAD A5 	2014-04-24 11:49:12
+79	140	Ngưng hoạt động		KS1	KS VŨ TRẢ LẠI MÁY KS SƠN NHẬN  (không có thời gian)	2018-11-15 11:49:44.977383
+80	140	Hoạt động		KS1	XUẤT  MÁY CHO PK CHUYEN KHOA NHI DONG - ĐEM MÀU HỒNG	2016-07-15 11:50:16
+81	140	Ngưng hoạt động		KS1	VỀ CÔNG TY- NHẬP KHO-CHẠY ĐƯỢC NHƯNG K ỔN ĐỊNH 	2016-08-10 11:50:49
+82	140	Ngưng hoạt động		KS1	Lấy Pressure Boar thay cho máy Phụ sản nHi Đà nẵng	2016-08-15 11:51:10
+83	140	Ngưng hoạt động		KS7	Đã trả  Pressure Boar vào lại trong máy nhưng chỉ có xác, k dùng đuộc	2018-04-27 11:51:34
+84	141	Hoạt động		KS6	TT PSN DA NANG	2012-09-05 11:52:37
+85	141	Ngưng hoạt động		KS6	LẤY MÁY VỀ CÔNG TY - CHƯA NHẬP KHO	2017-11-15 11:53:00
+142	55	Hoạt động		KS1	VIET TAN	2012-04-20 09:19:29
+143	56	Hoạt động		KS1	PK QUẬN 4\nHD52-11	2011-09-23 09:20:16
+144	57	Hoạt động		KS1	PHÒNG KHÁM ANH THINH-DUC TRONG	2011-02-21 09:20:59
+86	141	Ngưng hoạt động		KS6	Nhập kho: Lỗi Board ap suất : chưa thay\nLỗi ổ cứng : đã thay ok , xác hư đã trả kho chị Đài\nĐầu rủa kim bị hư: chỉ còn xác, \nMáy đầy đủ phụ tùng nhưng không hoạt động, ks Vu dự kien sửa lại vao thang 1/2018	2017-12-09 11:53:41
+87	141	Ngưng hoạt động		KS1	\nMáy được dồn  từ 2 máy ( 510438 + 510293)\nMáy khởi dộng lên được.\nCó nhiều đầu hít bị cũ, lúc đóng được lúc không\nTất cả đương ống hóa chất trong ngoài đều cũ.\nBuồng Laser chạy không ổn\nBộ Phận đưa mẫu cũ\nBuồng WBC, RBC đều cũ, hoạt dộng khoogn ổn \nHGB không ổn định \nBoard Reamplier rỉ sét, hoạt động không ổn định\nBoard Reasure đã hư, khắc phục chạy tạm và có thể hư .\nPiton + Syring bị muối ăn mòn , bị hở không còn kín\nvẻ bê ngoài máy cũ, không lam mới được .\nKết luận: máy chạy không tốt	2018-07-27 11:54:54
+88	142	Hoạt động		KS1	CTY ĐẠI TÂY DƯƠNG-pk bs gia dinh hang xanh	2014-01-08 11:56:30
+89	142	Ngưng hoạt động		KS1	MANG PK HÀNG XANH VỀ CTY ( THAY MÁY A+ 180471)	2014-07-02 11:57:10
+90	142	Hoạt động		KS1	KS LẤY MÁY RA KHỎI KHO\nKS KTRA VA GUI MAY RA BV PHU SAN NHI DA NANG	2014-09-08 11:57:36
+91	142	Bảo trì 		KS1	BV PHỤ SẢN NHI  GỬI VÔ CTY ĐỂ KI SƯ SỬA MÁY- CHƯA NHẬP KHO	2017-05-04 11:58:16
+92	142	Ngưng hoạt động		KS3	Lấy Board áp suất, board cao áp, cáp, bình áp suất gửi cho bv Phụ Sản Nhi DN - 'Thay cho máy Phụ San Nhi ĐN	2017-11-03 12:01:18
+93	142	Ngưng hoạt động		KS7	Nhập kho: đã trả lại đúng phụ tùng đã mượn nên máy đầy đủ phụ tùng- hoạt động bình thương	2017-12-09 12:02:06
+94	142	Ngưng hoạt động		KS7	Lấy Laser head có mã ( A5m 1319060, A5F 1233098)thay cho máy 510814 ở ngoài bv Phụ Sản Nhi ĐN  -  'Thay cho máy Phụ San Nhi ĐN: 510814	2018-03-14 12:02:46
+95	142	Ngưng hoạt động		KS7	Lấy lại Head bị lỗi DC của máy A5 Sản Nhi ( 510814) trả vào máy	2018-04-27 12:03:34
+96	142	Ngưng hoạt động		KS1	Máy không còn hoạt động được :\n40 van bị rỉ sét hoàn toàn(chỉ sư dụng để test máy)\nSyring + piston đã bị hư hỏng hoàn toàn, bộ phận giữ piston + syring bị rỉ sét không tháo lắp được\nBoard BBP2 bị hư hỏng , k thể hoạt động được\n2 bơm đã hư hỏng hoàn toàn.\nBoard pressure không hoat dong được nữa.\nBộ phận Laser, kim hút mẫu  không hoạt động.\nBộ nguồn bị nhiễu không hoạt động tốt .\nBoard Amplifier bị muối ăn  mòn , không còn hoạt động tốt .\nBuồng RBC, WBC , đèn HGB đã bị hư hỏng năng	2018-07-27 12:04:08
+97	143	Ngưng hoạt động		KS7	Xuaất máy cài phân mềm  mới, kiêm rtra dầu trong ống có phải là dầu bảo quản không	2017-01-05 12:04:42
+98	143	Ngưng hoạt động		KS7	traả lại máy sau kiem tra	2017-01-16 12:05:15
+99	143	Ngưng hoạt động		KS3	Mượn máy test board áp suất	2018-05-18 12:05:46
+100	143	Ngưng hoạt động		KS3	Mượn máy test lại máy( sếp bảo)	2018-08-31 12:06:20
+101	144	Ngưng hoạt động		KS1	không có thong tin	2018-11-15 12:07:08.401063
+102	93	Hoạt động		KS3	BV ĐK HUYỆN KRÔNG NĂNG - bán	2011-10-31 09:16:02
+103	107	Ngưng hoạt động		KS1	BV ĐK LẮK - HD58-11, BÁN	2011-10-31 09:17:40
+104	109	Hoạt động		KS3	PK BS. THÀNH - Tx BUON HO -  HD59-10	2010-10-27 09:18:44
+105	7	Hoạt động		KS3	BV BUÔN ĐÔN - HD68-2011, BÁN	2010-12-27 09:20:57
+106	88	Hoạt động		KS3	LAO PHOI DAK LAK - HD84-10	2010-12-22 09:21:52
+107	85	Hoạt động		KS6	Lắp maý PK Châu Thành bình dương	2015-03-27 11:40:04
+108	87	Hoạt động		KS1	LẮP MÁY PK NAM TÂN UYÊN LẤY MÁY A+ VỀ	2014-08-20 11:41:07
+109	94	Hoạt động		KS1	XUẤT MÁY PK NAM TÂN UYÊN THAY CHO MÁY 640588	2014-06-23 11:42:00
+110	94	Ngưng hoạt động		KS1	KS MANG VỀ CTY, HƯ MÀN HÌNH	2014-06-24 11:42:39
+111	96	Hoạt động		KS3	BỆNH VIỆN CƯKUIN\n59-2012/A.V.L-HĐ	2012-10-17 11:43:25
+112	99	Hoạt động		KS3	TTYT HUYỆN KRONG PAK\n69-2012/A.V.L-HĐ	2012-12-17 11:45:59
+113	100	Hoạt động		KS3	BVĐK KRONG PAK\n81-2012/A.V.L-HĐ	2012-12-17 11:46:53
+114	103	Hoạt động		KS3	BVĐK EAKAR\n48-2014/A.V.L	2014-09-11 11:52:30
+115	105	Hoạt động		KS3	BỆNH VIỆN KHU VỰC 333\n	2015-12-22 11:53:25
+116	106	Hoạt động		KS3	BV MDRAK\nHĐ: 61/2016 Ngày 12/08/2016	2016-09-26 11:54:29
+117	108	Hoạt động		KS3	BVĐK Huyện Lak\n53-2014/A.V.L-HĐ	2014-10-07 11:55:32
+118	46	Hoạt động		KS1	CTY ĐẤT PHÁT	2014-12-01 11:58:17
+119	34	Hoạt động		KS3	BV LAO & PHỔI ĐẮK LẮK	2012-01-12 11:59:19
+120	35	Hoạt động		KS3	BV TÂM THẦN DAKLAK	2013-01-15 12:00:09
+121	37	Hoạt động		KS3	BVĐK EAKAR	2014-09-11 12:01:37
+122	38	Hoạt động		KS3	BV TX BUÔN HỒ	2014-10-07 12:02:13
+123	39	Hoạt động		KS3	BVĐK LAK	2014-10-07 12:05:03
+124	40	Hoạt động		KS3	BVĐK Buôn Đôn	2014-12-01 12:05:42
+125	41	Hoạt động		KS3	BVĐK Krong năng	2014-12-01 12:06:13
+126	42	Hoạt động		KS3	Bệnh Viện ĐK Huyện Cư Kuin	2015-10-17 12:06:49
+127	44	Hoạt động		KS3	Bán cho công ty TNHH \nTrang Thiết Bị Y Tế BMS-lắp máy bệnh viện Tân Trụ	2016-05-17 12:07:58
+130	29	Hoạt động		KS1	Mượn máy để nhap mat khau tai cty	2015-06-30 12:10:06
+131	29	Hoạt động		KS1	Gởi cho công ty Tâm Thiện Tâm	2015-09-07 12:10:36
+128	27	Hoạt động		KS1	TTYT HUYỆN BUÔN ĐÔN	2013-01-14 12:09:04
+129	28	Ngưng hoạt động		KS1	TTYT HUYỆN EASUP	2013-01-14 12:09:37
+132	31	Hoạt động		KS3	BV Krong Pak	2016-09-26 12:11:50
+133	32	Hoạt động		KS3	BV Krong Pak	2016-09-26 12:12:54
+134	33	Hoạt động		KS6	Mấy về bị gãy ống hút mẫu	2016-08-09 12:13:42
+135	33	Ngưng hoạt động		KS7	lấy PSU(Power suply Board) 	2016-08-09 12:13:59
+137	50	Hoạt động		KS1	PK BINH DAN-CHO GAO	2013-03-09 09:14:50
+136	48	Hoạt động		KS1	PK BAC AI - BINH THUAN \n19-2013/AVL-HĐ	2013-03-25 09:13:25
+138	51	Hoạt động		KS3	TTYT MADRAK\n93-2012/AVL-HĐ	2013-01-14 09:15:54
+139	52	Hoạt động		KS3	BV CƯKUIN	2013-01-14 09:16:48
+140	53	Hoạt động		KS1	CTY DANAMECO	2012-12-04 09:17:33
+141	54	Hoạt động		KS1	PK BAC SY HIẾN\n03-2013/AVL-HĐ	2013-01-04 09:18:43
+145	58	Hoạt động		KS1	CHU LA BA MƯƠN	2011-02-26 09:22:02
+146	58	Ngưng hoạt động		KS1	LẤY LẠi  CÔNG TY	2012-01-16 09:22:26
+147	58	Hoạt động		KS1	CHU LA BA MUON	2012-01-19 09:23:08
+148	58	Ngưng hoạt động		KS1	Lấy Lại công ty	2012-05-08 09:23:31
+149	58	Hoạt động		KS1	Cho DK BINH DUONG MUON	2012-05-18 09:24:13
+150	58	Ngưng hoạt động		KS1	LÂY LẠI CÔNG TY	2012-07-23 09:24:41
+151	58	Ngưng hoạt động		KS1	ANH SƠN MƯỢN 01  CÁI FLOW CELL ĐI BV  EAKAR,ANH SƠN ĐÃ LẮP CHO BV FLOW CELL	2012-08-29 09:25:23
+152	58	Hoạt động		KS1	CHO PK VẠN AN MƯỢN	2013-09-11 09:25:43
+153	58	Ngưng hoạt động		KS1	PK VAN AN TRA LAI CTY	2015-09-19 09:26:14
+154	58	Ngưng hoạt động		KS1	PHONG KHÁM TÂM THIỆN TÂM	2015-09-07 09:26:45
+155	58	Hoạt động		KS1	TỪ TÂM THIỆN TÂM ĐEM VỀ CÔNG TY NHẬP KHO: Bóng đèn, dây bơm k sử dụng được, kĩ sư chưa test máy với hoa chất	2017-11-30 09:27:21
+157	59	Hoạt động		KS1	PK DK VIET THAI HOA\nHD14-10	2010-02-19 09:28:59
+156	58	Hoạt động		KS5	Xuất máy cho Ks Nguyên học 	2018-07-30 09:27:57
+158	60	Hoạt động		KS4	MEDIC	2009-06-24 09:30:03
+159	61	Hoạt động		KS4	MEDIC	2009-06-24 09:30:46
+160	145	Ngưng hoạt động		KS3	BỆNH VIỆN LAO PHỔI ĐEM VỀ CÔNG TY- NHẬP KHO: Tình trạng máy la fhoatj động bình thường , máy bị nứt tại mặt trước gần màn hình hiển thị, máy bị gãy 1 phân nhỏ tại đế , có dây nguồn và bộ điện cực và dây bơm đã được tháo ra khỏi máy, ban fgiao chị Đài	2018-09-29 10:31:42
+161	146	Ngưng hoạt động		KS3	Kĩ sư Hoàng lấy bộ điện cực để test thử cho máy  9180 của bệnh viện Nhi đồng 2- CON MỚI HOÀN TOÀN	2016-07-07 10:36:59
+162	146	Ngưng hoạt động		KS3	Ki sư Hoàng thay thế Main board cua rmays này với máy cửa hàng Minh Quân	2017-01-27 10:37:34
+163	146	Ngưng hoạt động		KS3	lấy Main Board bị lỗi này gửi hãng bảo hành	2017-02-28 10:37:54
+164	146	Ngưng hoạt động		KS3	'Main booard gửi về bảo hành lắp vào máy hoạt động bình thường	2017-08-24 10:38:29
+165	147	Ngưng hoạt động		KS3	MÁY MỚI HOÀN TOÀN	2016-09-21 10:39:15
+166	148	Ngưng hoạt động		KS3	MÁY MỚI HOÀN TOÀN	2017-03-28 10:40:30
+167	72	Hoạt động	1.  Thay điện cực buồng WBC\n2.  Phiểu thải hóa chất buồng WBC\n==> máy hoạt động bình thường	KS1	máy thường xuyên báo lỗi High blank thông số WBC	2018-09-28 09:23:53
+168	131	Hoạt động	1. RBC measure chamber + Measuring tube 70 um mới\n2. Buồng đo WBC mới\n==> máy hoạt động bình thường	KS1	Tình trạng:\n    Máy thông báo lỗi High Blank \n          + Thông số PLT cao\n          +  Kết quả MCV thấp\nNguyên nhân:\n          + Do body RBC bị hư hỏng\n          + Aperture RBC bị hư hỏng	2018-10-02 09:30:05
+169	74	Hoạt động	1. Thay RAM\n2. Thẻ nhớ chương trình	KS1	Tình trạng:\n          máy không hoạt động được\n Nguyên nhân:\n         Do bị hư Ram	2018-12-27 09:38:37
+182	70	Hoạt động		KS3	Máy hoạt động bình thường	2018-12-21 10:53:31
+170	67	Hoạt động	thay thế điện cực K+ sr 1611164037	KS1	Tình trạng:\n                 Điện cực K+ not calibration\nnguyên nhân: \n                Điện cực K+ quá hạn sử dụng	2018-12-27 09:44:48
+171	18	Hoạt động		KS4	Canh chỉnh lại hệ thống lấy cup mẫu \nmáy hoạt động bình thường	2019-01-04 10:01:00
+172	19	Hoạt động	thay thế mới 4 capillary (5,6,7,8)	KS4	Máy hoạt động bình thường	2019-01-05 10:04:38
+173	114	Ngưng hoạt động		KS1	TT:\nĐiện cực Na+, Ca+ hoạt động không ổn định\nNN:\nđiện cực Ref quá hạn sử dụng\n\nđã tiến hành sửa chữa nhưng chưa khác phục được	2018-12-27 10:07:15
+174	107	Hoạt động	kỷ sư Hoàng + ks Nguyên đã tiến hành thay thế\n+ Hệ thống dây dẫn hóa chất 9 m\n+ Van 3 (2 cái)\n+ Sylanh (3 cái)\n===>>>>> máy hoạt động bình thường	KS3	Chạy kết quả sai\nNguyên nhân:\n   -  Dây ống dẫn hóa chất bị lão hóa\n   -  Van hư\n   -  Sylanh bị lão hóa	2018-11-27 10:11:24
+175	39	Hoạt động		KS3	Tình trạng máy:\n   - Máy đang hoạt động\n   - hệ thống làm lạnh hóa chất không hoạt động\n   - Bơm rửa yếu\nNguyên nhân:\n   - Bộ làm lạnh bị hư\n   - Da bơm bị yếu\n	2018-11-27 10:20:06
+176	103	Hoạt động		KS3	Máy đang hoạt động bình thường	2018-11-29 10:31:00
+177	45	Ngưng hoạt động	- Khắc phục lỗi kết nối\n==>  Máy hoạt động bình thường\n	KS3	Tình trạng:\n     máy báo lỗi I2C\nNguyên nhân:\n   Lỗi cáp kết nối\n\n ***  máy tạm ngưng hoạt động do thiếu hóa chất	2018-11-29 10:33:19
+178	37	Hoạt động		KS3	Đang hoạt động bình thường	2019-01-17 10:38:12
+179	106	Hoạt động		KS3	Máy hoạt động bình thường	2019-01-14 10:43:50
+180	43	Hoạt động		KS3	Máy đang hoạt động bình thường	2019-01-14 10:48:41
+181	85	Hoạt động	Thay màn hình mới\n==> máy hoạt động bình thường	KS3	Tình trạng:\n    Màn hình của máy bị đơ cảm ứng\nNguyên nhân:\n   Lỗi màn hình\n	2018-12-18 10:49:50
+183	40	Hoạt động		KS3	Máy hoạt động bình thường	2019-01-16 10:59:23
+184	91	Hoạt động		KS3	May hoạt động bình thường	2019-01-16 11:00:36
+185	38	Hoạt động		KS3	Máy hoạt động bình thường	2019-01-16 11:01:43
+186	49	Hoạt động		KS3	Máy hoạt động bình thường	2019-01-16 11:02:28
+23	78	Hoạt động		KS3	binh thuong	2018-11-13 11:38:25.72804
+187	78	Hoạt động		KS3	Máy hoạt động bình thường	2019-01-16 11:03:44
+188	99	Hoạt động	 - Thay thế đầu coil van số 10\n - Đề nghị thay đèn Hemoglobin	KS3	Tình trạng:\n  -  Buồng bạch cầu bạch cầu bị tràn\n   - Hemoglebin self test fail\nNguyên nhân:\n - đầu coil van số 10 bị hư\n	2019-01-17 11:05:37
+189	149	Hoạt động		KS3	Máy hoạt động bình thường	2019-01-14 11:18:04
+190	156	Hoạt động		KS3	Hoạt động bình thường	2019-01-22 09:51:50.544466
+191	74	Hoạt động	KS. Sơn\nthay bình hóa chất mới\n==> hoạt động bình thường	KS1	Tình trạng \n     máy báo lỗi không Calibration PH\n    Remove cartrigde\nNguyên nhân:\n    Do đường ống trên bình hóa chất bị nghẹt	2014-07-07 10:03:09
+192	156	Hoạt động	KS Trương Tuấn Vũ\nthay điện cực K+\n==> máy hoạt động bt	KS1	nguyên nhân: \nK+ not cal	2014-07-29 10:09:24
+193	129	Hoạt động	KS Sơn\n     Thay buồng đo RBC/PLT\n     Thay nguồn mới	KS1	Tình trạng:\n   Lỗi PLT/RBC\n  Cháy linh kiện trên mainboard không ảnh hưởng tới quá trình hoạt động của máy\nNguyên nhân:\n   Nứt buồng đo RBC/PLT\n   Bộ nguồn chính bị hỏng\n\n\n	2014-10-31 10:12:31
+213	160	Hoạt động		KS1	Bảo trì định kỳ tháng 10\n  + test lại các thông số máy, vệ sinh máy móc\n  + chạy QC\n==> máy hđ bình thường	2018-10-04 15:28:11
+194	158	Ngưng hoạt động		KS1	 Máy từ BV TW Huế - phòng khám bệnh trả về cty (bệnh viện không còn nhu cầu sử dụng đã nâng cấp lên thành máy 5 thành phần)\n\n*****Tình trạng máy:\n     Máy vẫn hoạt động bình thường nhưng coil số 7,8,10 có hiện tượng bị sét nguyên nhân do trong quá trình sử dụng bị dính hóa chất\n\n***** giá trị sử dụng còn lại 70%	2019-01-22 10:29:31.208768
+195	40	Hoạt động	KS Sơn\n Thay thế bóng đèn mới\n Thay dây belt trực đúng\n ==> máy hoạt động bình thường	KS1	Tình trạng:\n    kết quả không ổn định\n    kim hút mẫu chạy không đúng hành trình\nNguyên nhân:\n   Do bóng đèn đã quá hạn sử dụng\n   Dây belt trực đứng cảu kim hút mẫu bị hư hỏng\n  	2017-10-12 10:49:12
+196	85	Hoạt động	KS Sơn\n Thay màn hình cảm ứng\n==>  Máy hoạt động bình thường	KS3	Tình trạng máy; \n   Màn hình máy bị rung và lệch cảm ứng\nNguyên nhân:\n   Do màn hình gbị hư hỏng\n   	2017-10-12 10:57:47
+197	38	Hoạt động	KS Sơn\nthay thế bơm khô mới cho bv	KS3	Tình trang:\n      Máy thường xuyện bị tràn nước rửa cuvette\nNguyên nhân:\n    Do bơm làm khô cuvette đã quá hạn sử dụng\n	2017-10-13 11:04:57
+198	156	Hoạt động	KS. Sơn \n    thay thế dây bơm\n==> Máy hoạt động bình thường	KS3	Tình trạng: \n   máy chạy kết quả không ổn định, control  không ổn định\nNguyên nhân:\n   Do dây bơm quá hạn sử dụng	2017-10-16 11:08:30
+199	156	Hoạt động	KS. Sơn\nthay điện ccự Ca++ serial: 1608139 - 018\nthay điện cực K+ serial 1609219  - 008\n==> máy hoạt động bình thường	KS3	Tình trạng máy:\n   Máy đo kết quả Ca++ không ổn định chạy không vào control\nNguyên nhân:\n   các phụ tùng sau đã bị hư hỏng\n     + điện cực Ca++ sẻial 1608`39 - 022\n     + điện cực K+ serial: 1601145 - 063\n	2017-10-27 11:11:35
+200	68	Hoạt động	KS. Sơn\nĐã tiến hành thay thế:\n    + điện cực Ref Housing\n    + điện cực K+\n    + Điện cực Ca++ \n==> máy hoạt động bình thường	KS1	Tình trang máy:\n  Điện cực Na+, Ca++ không calibration được\nnguyên nhân:\n  điện cực Na+, Ca++ đã quá hạn sử dụng\n	2017-11-14 11:21:30
+201	41	Hoạt động	KS Sơn\n   thay kim hút mẫu và hóa chất	KS3	Tình trạng\n   Máy không hút được hóa chất và mẫu bệnh phẩm\nNguyên nhân;\n   Do kim hút mẫu và hóa chất đã bị hư hỏng 	2017-12-27 11:45:23
+202	34	Hoạt động	KS. Sơn\nthay bóng đèn mới	KS3	Tình trạng:\n    máy chạy kết quả không ổn định\nnguyên nhân:\n    Bóng đèn đã quá hạn sử dụng	2017-12-28 11:50:48
+203	110	Hoạt động	KS Sơn\nthay đàn hemoglobin \n==> máy hoạt động bình thường	KS1	Tình trạng:\n     máy không đo đucợ thông số HGB\nNguyên nhân:\n   đèn hemoglobin bị hỏng	2018-01-03 12:55:12
+204	74	Hoạt động	KS Sơn\n  thay thế quạt làm mát \n==> máy hoạt động bình thường	KS1	Tình trạng:\n    máy thường xuyên báo lỗi không calibration được\nnguyên nhân:\n   Do quạt làm mát đã bị hư hỏng\n	2018-02-10 12:57:09
+205	34	Hoạt động	KS Sơn \n   đã thay thế\n    -  Sample Preamplifier board \n    -  Reference Preamplifier board\n\n   	KS1	Tình trạng máy:\n    máy thông báo lỗi:\n   (40),(42) Burn out lamp or defetive photometer \nNguyên nhân:\n   - Sample Preamplifier board bị hỏng\n   - Reference Preamplifier board bị hỏng\n  	2018-03-28 13:03:00
+206	38	Hoạt động	KS Sơn \nthay thế bơm\n==> máy hoạt động bình thường	KS3	Tình trạng: \n  máy thông báo lỗi error in cuvette\nnguyên nhân:\n   Do bơm hút nước rửa cuvette bị hỏng\n	2016-03-23 13:09:55
+207	108	Hoạt động	KS Hoàng:\n thay thế van số 6 và2 \n==> máy hoạt động bình thường	KS3	Tình trang:\n   máy không hoạt động đucợ\nNguyên nhân\n  hư van số 6, van số 2\n	2016-07-13 13:15:35
+209	159	Hoạt động	KS Hoàng\n   thay dây bơm, điện cực K+ (KCD534) bằng K+ (KAQ064)\n==> máy hoạt động bình thường	KS3	Tình trạng máy:\n    Máy không hoạt động được\nNguyên nhân: \n    Nghẹt ống thải, điện cực\n	2016-10-22 13:25:16
+210	34	Hoạt động	KS Hoàng\n thay thế cáp assembled - robot arm mới\n==> Máy hoạt đingị bình thường	KS3	Tình trạng máy:\n  máy không hút được mẫu và hóa chất \nNguyên nhân:\n   cap assembled robot arm bị lỗi\n	2016-10-07 13:28:15
+211	18	Hoạt động	KS. T Anh\n  thay pin CMOS\n==> máy đã gởi trả lại kết quả bình thường	KS4	Tình trạng máy:\n    máy lưu sai ngày tháng kết quả dẫn đến không đồng bộ dữ liệu lưu trữ\nnguyên nhân:\n   pin CMOS yếu\n	2017-08-11 09:07:23
+212	18	Hoạt động	KS. T Anh\nthya mới bóng đèn\n==> máy hđ bình thường	KS4	TT:\n   máy báo lỗi đèn Deuterium\nNN:\n bóng đèn tới ngưỡng sử dụng\n	2017-11-24 09:14:44
+214	161	Hoạt động		KS1	bảo trì định kỳ \n==> máy hoạt động bình thường	2018-10-04 15:35:50
+215	160	Hoạt động	KS Sơn\nthay đoạn ống dẫn hóa chất diluent mới\nkiểm tra lại các thông số máy\n==> máy hđ bình thường	KS1	TT:\n    máy không hút được hóa chất Diluent \nNN;\n  Do đường ống dẫn hóa chất Diuent bị hở\n	2018-11-13 15:41:15
+216	161	Hoạt động		KS1	bảo trì định kỳ\n==> máy hoạt động bình thường 	2018-11-14 15:54:32
+208	112	Hoạt động	KS Hoàng\n thay thế dây curoa mới\n==> máy hoạt động bình thường 	KS1	Tình trạng:\n      máy không hoạt động được\nnguyên nhân:\n    đứt dây curoa	2016-07-18 13:17:51
+217	112	Hoạt động		KS1	bảo trì định kỳ\n==> máy hoạt động bình thường	2018-09-24 16:01:08
+218	162	Hoạt động		KS1	bảo trì định kỳ\n==> máy hoạt động bình thường	2018-09-24 16:04:24
+219	163	Hoạt động		KS1	bảo trì định kỳ\n--> máy hđ bình thường	2018-10-02 16:09:56
+220	129	Hoạt động		KS1	bảo trì định kỳ\n==> máy hđ bình thường	2018-10-03 16:12:03
+\.
+
+
+--
+-- TOC entry 2849 (class 0 OID 16421)
+-- Dependencies: 203
+-- Data for Name: loaimay; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.loaimay (ma, ten) FROM stdin;
+SH	Máy sinh hóa
+HH	Máy huyết học
+ĐD	Máy điện di
+ĐG	Máy điện giải
+TP	Test Phân
+LT	Máy Ly Tâm
+TT	Máy Tinh Trùng
+NT	Máy Nước Tiểu
+MD	Máy Miễn Dịch
+KM	Máy Khí Máu
+ĐM	Máy Đông Máu
+NTTC	Máy Ngưng Tập Tiểu Cầu
+ION	ion đồ
+\.
+
+
+--
+-- TOC entry 2850 (class 0 OID 16427)
+-- Dependencies: 204
+-- Data for Name: model; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.model (ma, ten, mamay) FROM stdin;
+A+	Abacus +	HH
+A3	Abacus 3	HH
+A5	Abacus 5	HH
+QC	Qickgel Chamber	ĐD
+S3	SPIFE 3000	ĐD
+S4	SPIFE 4000	ĐD
+V8	Máy V8	ĐD
+SML	SmartLyte	ĐG
+STL	StarLyte	ĐG
+V8E	V8 E-Class	ĐD
+V8N	V8 Nexus	ĐD
+K5	K-Lyte5	ĐG
+K6	K-Lyte 6	ĐG
+PTB	Pictus B	SH
+PT4	Pictus 400	SH
+PT5	Pictus 500	SH
+348	RapidLab 348	KM
+AR	AggRAM	NTTC
+UR5	Urit 500	NT
+UR3	Urit 300	NT
+CS+	Clinitek Status Plus	NT
+COMBI	Combilyzer	NT
+OTTS1	Opti TS1	KM
+OTTS2	Opti TS2	KM
+G3000	GEM Premier 3000	KM
+G3500	GEM Premier 3500	KM
+CASM4	Cascade M4	ĐM
+E5	E5	ĐG
+OTL	Opti Lion	ĐG
+IL	ILYTE	ĐG
+SAT450	SAT 450	SH
+C5	CHEM 5V3	SH
+ST	SPIFE TOUCH	ĐD
+PT7	Pictus 700	SH
+PT2	Pictus 200	SH
+KX-21	KX-21	HH
+ABX MICRO 60	ABX MICRO 60	HH
+ABACUS 380	ABACUS 380	HH
+SEIMEN	SEIMEN	NT
+UC240	URODIP CHECK 240	NT
+UC	URODIP CHECK 	NT
+UC300	URODIP CHECK 300	NT
+UC500	URODIP CHECK 500	NT
+PLC-025	PLC-025	LT
+C7	CHEM 7	SH
+A5AL	ABACUS 5 AUTOLOADER	HH
+9180 AVL	AVL 9180	ĐG
+9180 Roche	9180 Roche	ĐG
+OPTI TS	OPTI TS	ĐG
+K-lite 5	K- lite 5	ION
+\.
+
+
+--
+-- TOC entry 2851 (class 0 OID 16433)
+-- Dependencies: 205
+-- Data for Name: seri; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.seri (ma, ten, mamodel, mamay, hientrang, khachhang, pk, ngaylapdat) FROM stdin;
+651203301	651203301	QC	ĐD	0	HG	8	\N
+651203302	651203302	QC	ĐD	0	HG	9	\N
+651411501	651411501	QC	ĐD	0	BR	10	\N
+651627202	651627202	QC	ĐD	0	NT	11	\N
+651627201	651627201	QC	ĐD	0	BK	12	\N
+580723202	580723202	S3	ĐD	0	ĐKĐN	13	\N
+581030003	581030003	S3	ĐD	0	ĐKĐN	14	\N
+580733702	580733702	S3	ĐD	0	C	15	\N
+581332502	581332502	S3	ĐD	0	TV	16	\N
+580435701	580435701	S3	ĐD	0	ĐL	17	\N
+5823114034	5823114034	V8	ĐD	0	NĐ2	18	\N
+5822114054	5822114054	V8	ĐD	0	548	19	\N
+5821104028	5821104028	V8	ĐD	0	K2	20	\N
+5824117036	5824117036	V8E	ĐD	0	HH	21	\N
+5826117021	5826117021	V8E	ĐD	0	V	22	\N
+5827128024	5827128024	V8N	ĐD	0	K2	23	\N
+5922114016	5922114016	V8E	ĐD	0	K2	24	\N
+781635401	781635401	ST	ĐD	0	BĐ1	25	\N
+781635101	781635101	ST	ĐD	0	BĐ1	26	\N
+120916D40	120916D40	PTB	SH	0	BĐ3	27	\N
+120916D39	120916D39	PTB	SH	0	ES	28	\N
+130917D35	130917D35	PTB	SH	0	TTT	29	\N
+130817D19	130817D19	PTB	SH	0	TP	30	\N
+160717D424	160717D424	PTB	SH	0	KP	31	\N
+160717D423	160717D423	PTB	SH	0	K2	32	\N
+160717D430	160717D430	PTB	SH	0	K2	33	\N
+11122801	11122801	PT4	SH	0	LP	34	\N
+12052833	12052833	PT4	SH	0	TTĐL	35	\N
+13052820	13052820	PT4	SH	0	TTPCSR	36	\N
+14022806	14022806	PT4	SH	0	EK	37	\N
+14052821	14052821	PT4	SH	0	BH	38	\N
+14062827	14062827	PT4	SH	0	LAK	39	\N
+14092846	14092846	PT4	SH	0	BĐ2	40	\N
+14062828	14062828	PT4	SH	0	KN	41	\N
+15072818	15072818	PT4	SH	0	CK	42	\N
+15072820	15072820	PT4	SH	0	MĐR	43	\N
+16032865	16032865	PT4	SH	0	LATT	44	\N
+17106927	17106927	PT5	SH	0	EK	45	\N
+14111615	14111615	PT2	SH	0	CTĐP	46	\N
+11054112	11054112	PT7	SH	0	ĐKBD	47	\N
+4032	4032	C5	SH	0	BTBA	48	\N
+1612387	1612387	SAT450	SH	0	BH	49	\N
+4031	4031	C5	SH	0	CG	50	\N
+4030	4030	C5	SH	0	MĐR	51	\N
+4029	4029	C5	SH	0	CK	52	\N
+4028	4028	C5	SH	0	CTDAMECO	53	\N
+3734	3734	C5	SH	0	BSHIEN	54	\N
+3733	3733	C5	SH	0	CTVT	55	\N
+3418	3418	C5	SH	0	PKQ4	56	\N
+3417	3417	C5	SH	0	ATĐT	57	\N
+3193	3193	C5	SH	0	K2	58	\N
+3192	3192	C5	SH	0	VTH	59	\N
+3139	3139	C5	SH	0	HH	60	\N
+3140	3140	C5	SH	0	HH	61	\N
+DJ02B13060003	DJ02B13060003	K5	ĐG	0	TTĐL	62	2013-11-29 00:00:00
+13F02724	13F02724	SML	ĐG	0	KN	63	2013-12-27 00:00:00
+1098	1098	OTL	ĐG	0	333	64	2007-09-06 00:00:00
+1023	1023	STL	ĐG	0	VTH	65	2010-05-21 00:00:00
+DJ210010021	DJ210010021	K5	ĐG	0	CT	66	2010-12-01 00:00:00
+13107	13107	9180	ĐG	0	ĐKBD	67	2006-01-01 00:00:00
+14E03123	14E03123	SML	ĐG	0	ĐKBD	68	2015-01-01 00:00:00
+34906	34906	IL	ĐG	0	ĐKBD	69	2018-12-12 00:00:00
+1160	1160	STL	ĐG	0	NĐ2	70	2013-09-17 00:00:00
+13A02559	13A02559	SML	ĐG	0	NĐ2	71	2013-10-01 00:00:00
+180579	180579	A+	HH	0	TĐ	72	2015-11-10 00:00:00
+OP4-1006	OP4-1006	OTTS1	KM	0	ĐKBD	73	2006-08-04 00:00:00
+24748	24748	G3000	KM	0	ĐKBD	74	2018-12-12 00:00:00
+24746	24746	G3000	KM	0	ĐKBD	75	2018-12-12 00:00:00
+1865	1865	348	KM	0	NĐ2	76	2012-12-05 00:00:00
+2403	2403	348	KM	0	NĐ2	77	2013-11-01 00:00:00
+410714301	410714301	CASM4	ĐM	0	BH	78	2007-06-09 00:00:00
+411333902	411333902	CASM4	ĐM	0	KN	79	2013-12-27 00:00:00
+411203802	411203802	CASM4	ĐM	0	KP	80	2012-12-01 00:00:00
+410712001	410712001	CASM4	ĐM	0	333	81	2007-07-17 00:00:00
+411526502	411526502	CASM4	ĐM	0	LAK	82	2015-10-23 00:00:00
+B1760	B1760	KX-21	HH	0	CT	83	2006-11-02 00:00:00
+7120OS84912	7120OS84912	ABX MICRO 60	HH	0	CT	84	2008-11-19 00:00:00
+641280	641280	ABACUS 380	HH	0	CT	85	2015-03-27 00:00:00
+180260	180260	A+	HH	0	NTU	86	2009-01-19 00:00:00
+640983	640983	ABACUS 380	HH	0	NTU	87	2014-08-20 00:00:00
+310217	310217	A3	HH	0	LP	88	2010-12-22 00:00:00
+710OS84667	710OS84667	ABX MICRO 60	HH	0	LP	89	2007-12-25 00:00:00
+180420	180420	A+	HH	0	BĐ2	90	2009-12-01 00:00:00
+640980	640980	ABACUS 380	HH	0	BĐ2	91	2014-12-03 00:00:00
+710OS84698	710OS84698	ABX MICRO 60	HH	0	KN	92	2007-12-07 00:00:00
+310379	310379	A3	HH	0	KN	93	2011-10-03 00:00:00
+640595	640595	ABACUS 380	HH	0	KN	94	2014-12-05 00:00:00
+710OS84669	710OS84669	ABX MICRO 60	HH	0	CK	95	2007-12-06 00:00:00
+640182	640182	ABACUS 380	HH	0	CK	96	2012-10-23 00:00:00
+809OS86223	809OS86223	ABX MICRO 60	HH	0	KP	97	2008-11-15 00:00:00
+641481	641481	ABACUS 380	HH	0	KP	98	2015-09-09 00:00:00
+640184	640184	ABACUS 380	HH	0	KP	99	2012-12-18 00:00:00
+640186	640186	ABACUS 380	HH	0	KP	100	2012-12-18 00:00:00
+705OS83964	705OS83964	ABX MICRO 60	HH	0	EK	101	2007-07-19 00:00:00
+180550	180550	A+	HH	0	EK	102	2011-11-01 00:00:00
+640978	640978	ABACUS 380	HH	0	EK	103	2014-09-01 00:00:00
+705OS83927	705OS83927	ABX MICRO 60	HH	0	333	104	2007-07-17 00:00:00
+641586	641586	ABACUS 380	HH	0	333	105	2015-12-25 00:00:00
+641783	641783	ABACUS 380	HH	0	MĐR	106	2016-09-29 00:00:00
+310374	310374	A3	HH	0	LAK	107	2011-10-31 00:00:00
+640979	640979	ABACUS 380	HH	0	LAK	108	2014-10-07 00:00:00
+310222	310222	A3	HH	0	PKBH	109	2010-10-27 00:00:00
+180345	180345	A+	HH	0	ABC	110	2009-11-01 00:00:00
+180541	180541	A+	HH	0	TĐ	111	2010-12-07 00:00:00
+180344	180344	A+	HH	0	VTH	112	2010-04-06 00:00:00
+310380	310380	A3	HH	0	BĐ2	7	2011-12-27 00:00:00
+580733720	580733720	S3	ĐD	0	C	113	2008-01-14 00:00:00
+34901	34901	IL	ĐG	0	ĐKBD	114	2018-12-31 00:00:00
+244Z07	244Z07	CS+	NT	0	KN	115	2014-12-05 00:00:00
+140177	140177	COMBI	NT	0	333	116	2015-12-25 00:00:00
+247202	247202	SEIMEN	NT	0	BH2	117	2014-10-09 00:00:00
+24000208	24000208	UC240	NT	0	KP	118	2008-11-15 00:00:00
+42109021	42109021	UC300	NT	0	BH2	119	2010-01-28 00:00:00
+42109018	42109018	UC300	NT	0	KP	120	2010-01-27 00:00:00
+42109028	42109028	UC300	NT	0	VTH	121	2010-03-01 00:00:00
+42109019	42109019	UC300	NT	0	ABC	122	2009-11-01 00:00:00
+42109022	42109022	UC300	NT	0	CT	123	2010-08-03 00:00:00
+50000021	50000021	UC500	NT	0	BH2	124	2007-09-25 00:00:00
+8186848	8186848	PLC-025	LT	0	NTU	125	2009-01-19 00:00:00
+741432402	741432402	AR	NTTC	0	BR	126	2016-06-24 00:00:00
+9697	9697	C7	SH	0	NTU	127	2009-01-19 00:00:00
+510157	510157	A5	HH	0	SN	128	2017-11-05 00:00:00
+510394	510394	A5	HH	0	C	129	2013-08-01 00:00:00
+510500	510500	A5	HH	0	TWH	130	2016-12-15 00:00:00
+510814	510814	A5	HH	0	SN	131	2017-03-31 00:00:00
+54000163	54000163	A5AL	HH	0	K2	132	2012-12-03 00:00:00
+54000164	54000164	A5AL	HH	0	C	133	2014-04-25 00:00:00
+54000165	54000165	A5AL	HH	0	K2	134	2017-10-06 00:00:00
+AS0014	AS0014	A5AL	HH	0	K2	135	2014-06-12 00:00:00
+54000461	54000461	A5AL	HH	0	C	136	2015-10-26 00:00:00
+54000462	54000462	A5AL	HH	0	TWH	137	2016-12-15 00:00:00
+54000587	54000587	A5AL	HH	0	SN	138	2017-03-31 00:00:00
+510072	510072	A5	HH	0	K2	139	2010-08-11 00:00:00
+510126	510126	A5	HH	0	K2	140	2016-08-10 00:00:00
+510293	510293	A5	HH	0	K2	141	2017-12-09 00:00:00
+510438	510438	A5	HH	0	K2	142	2017-12-09 00:00:00
+510545	510545	A5	HH	0	K2	143	2014-08-11 00:00:00
+510817	510817	A5	HH	0	K2	144	2017-03-07 00:00:00
+U18.2865	U18.2865	9180	ĐG	0	K2	145	2018-09-29 00:00:00
+40-150603703	40-150603703	SML	ĐG	0	K2	146	2016-07-07 00:00:00
+40-160403903	40-160403903	SML	ĐG	0	K1	147	2016-09-21 00:00:00
+40-170104056	40-170104056	SML	ĐG	0	K2	148	2017-03-28 00:00:00
+247202	247202	CS+	NT	0	BH	149	2014-10-09 00:00:00
+13107	13107	9180 AVL	ĐG	0	ĐKBD	150	2006-01-01 00:00:00
+OP4-1006	OP4-1006	OPTI TS	ĐG	0	ĐKBD	151	2006-08-04 00:00:00
+15092838	15092838	PT4	SH	0	333	152	2019-01-21 00:00:00
+50000021	50000021	UR5	NT	0	BH2	153	2019-01-21 00:00:00
+42109021	42109021	UR5	NT	0	BH2	154	2019-01-21 00:00:00
+AH0905099	AH0905099	K-lite 5	ION	0	DL	155	2014-04-24 00:00:00
+16363	16363	9180 Roche	ĐG	0	NĐ2	156	2018-07-24 00:00:00
+DJ0210010021	DJ0210010021	K-lite 5	ION	0	CT	157	2010-01-12 00:00:00
+DJ0210030005	DJ0210030005	K-lite 5	ION	0	BD	159	2010-11-01 00:00:00
+640580	640580	ABACUS 380	HH	0	ĐHYH	160	2019-01-25 00:00:00
+640350	640350	ABACUS 380	HH	0	TWH	158	2019-01-22 00:00:00
+641587	641587	ABACUS 380	HH	0	TWH	161	2019-01-25 00:00:00
+5937	5937	C5	SH	0	VTH	162	2019-01-25 00:00:00
+13108	13108	9180 AVL	ĐG	0	C	163	2019-01-25 00:00:00
+\.
+
+
+--
+-- TOC entry 2853 (class 0 OID 16441)
+-- Dependencies: 207
+-- Data for Name: taikhoan; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.taikhoan (taikhoan, matkhau, vaitro) FROM stdin;
+Manager	quanly	admin
+admin	AdmiN	admin
+admin2	AdmiN	admin
+User1 	Uer1	user
+Minhnguyen	1	admin
+\.
+
+
+--
+-- TOC entry 2867 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: hientrang_ma_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.hientrang_ma_seq', 11, true);
+
+
+--
+-- TOC entry 2868 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: lichsu_pk_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.lichsu_pk_seq', 220, true);
+
+
+--
+-- TOC entry 2869 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: seri_pk_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.seri_pk_seq', 163, true);
+
+
+--
+-- TOC entry 2715 (class 2606 OID 16451)
+-- Name: hientrang hientrang_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.hientrang
+    ADD CONSTRAINT hientrang_pkey PRIMARY KEY (ma);
+
+
+--
+-- TOC entry 2717 (class 2606 OID 16453)
+-- Name: lichsu lichsu_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lichsu
+    ADD CONSTRAINT lichsu_pkey PRIMARY KEY (pk);
+
+
+--
+-- TOC entry 2719 (class 2606 OID 16455)
+-- Name: loaimay loaimay_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.loaimay
+    ADD CONSTRAINT loaimay_pkey PRIMARY KEY (ma);
+
+
+--
+-- TOC entry 2721 (class 2606 OID 16457)
+-- Name: seri seri_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.seri
+    ADD CONSTRAINT seri_pkey PRIMARY KEY (pk);
+
+
+-- Completed on 2019-05-27 09:21:42
+
+--
+-- PostgreSQL database dump complete
+--
+
+\connect template1
+
+SET default_transaction_read_only = off;
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.3
+-- Dumped by pg_dump version 10.3
+
+-- Started on 2019-05-27 09:21:42
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 2791 (class 0 OID 0)
+-- Dependencies: 2790
+-- Name: DATABASE template1; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON DATABASE template1 IS 'default template for new databases';
+
+
+--
+-- TOC entry 1 (class 3079 OID 12924)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2793 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+-- Completed on 2019-05-27 09:21:43
+
+--
+-- PostgreSQL database dump complete
+--
+
+-- Completed on 2019-05-27 09:21:43
+
+--
+-- PostgreSQL database cluster dump complete
+--
+
