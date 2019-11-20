@@ -121,6 +121,17 @@ namespace Quanly
                 col4.Add(ob.ten);
             }
             textBox4.AutoCompleteCustomSource = col4;
+
+            textBox5.AutoCompleteMode = AutoCompleteMode.Suggest;
+            textBox5.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection col5 = new AutoCompleteStringCollection();
+            KySuHandler kshd = new KySuHandler();
+            List<Model.KySu> lks = kshd.layds();
+            foreach (Model.KySu ob in lks)
+            {
+                col5.Add(ob.ten);
+            }
+            textBox5.AutoCompleteCustomSource = col5;
         }
 
 
@@ -205,10 +216,10 @@ namespace Quanly
                 int x = 0;
                 Int32.TryParse(value0, out x);
                 inputhistory frm2 = new inputhistory(x);
-                //Xemluocsu frm2 = new Xemluocsu(x);
+               //
+               // Xemluocsu frm2 = new Xemluocsu(x);
                 frm2.StartPosition = FormStartPosition.CenterParent;
                 frm2.ShowDialog(this);
-
             } 
         }
         private void xemLichSuKho()
@@ -348,7 +359,20 @@ namespace Quanly
                     //if(mo.ten.Equals(format(textBox2.Text)) || textBox2.Text.Equals(format("")))
                     if (mo.ten == format(textBox2.Text) || textBox2.Text == "")
                     {
-                        LichSuHandler lih = new LichSuHandler();
+                        KhachHangHandler khhd = new KhachHangHandler();
+                        Model.KhachHang kh = khhd.laythongtin(s.khachhang, "");
+                        if(kh.ten == format(textBox4.Text)|| textBox4.Text == "")
+                        {
+                            KySuHandler kshd = new KySuHandler();
+                            Model.KySu ks = kshd.laythongtin(s.phutrach, "");
+                            if (ks.ten == format(textBox5.Text) || textBox5.Text == "")
+                            {
+                                dataGridView1.Rows.Add(s.pk, s.ma, s.ten, mo.ten, m.ten, kh.ten, ks.ten, s.ngaylapdat, "", "");
+                            }
+
+
+                        }
+                        /*LichSuHandler lih = new LichSuHandler();
                         Record r = lih.traCuuGanNhat(s.pk);
 
                         if (r.khachhang != null && r.khachhang != "")
@@ -387,7 +411,7 @@ namespace Quanly
                                 dataGridView1.Rows.Add(s.pk, s.ma, s.ten, mo.ten, m.ten,"", kysu.ten, r.thoigian.ToString("dd/MM/yyyy hh:mm:ss"),
                                          r.hientrang, r.ghichu);
                             }
-                        }
+                        }*/
                     }
                 }
 
@@ -534,6 +558,9 @@ namespace Quanly
                 }
                 
             }
+
+            
+            
         }
 
         private void Button3_Click(object sender, EventArgs e)
@@ -563,6 +590,11 @@ namespace Quanly
 
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog(this);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

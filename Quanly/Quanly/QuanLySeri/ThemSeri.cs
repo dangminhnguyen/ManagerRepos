@@ -21,6 +21,8 @@ namespace Quanly.QuanLySeri
             this.mamay = mamay;
             this.mamodel = mamodel;
             getdskh();
+            getdsks();
+            getdshtr();
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd/MM/yyyy";
         }
@@ -39,6 +41,36 @@ namespace Quanly.QuanLySeri
             comboBox2.DisplayMember = "Value";
             comboBox2.ValueMember = "Key";
             comboBox2.SelectedIndex = 0;
+        }
+        public void getdshtr()
+        {
+            hientrangcb.Items.Clear();
+            Dictionary<string, string> combosource = new Dictionary<string, string>();
+            HienTrangHandler lh = new HienTrangHandler();
+            List<Model.HienTrang> ls = lh.layds();
+            foreach (Model.HienTrang lm in ls)
+            {
+                combosource.Add(lm.ma.ToString(), lm.ma + " - " + lm.ten);
+            }
+            hientrangcb.DataSource = new BindingSource(combosource, null);
+            hientrangcb.DisplayMember = "Value";
+            hientrangcb.ValueMember = "Key";
+            hientrangcb.SelectedIndex = 0;
+        }
+        public void getdsks()
+        {
+            phutrachcombo.Items.Clear();
+            Dictionary<string, string> combosource = new Dictionary<string, string>();
+            KySuHandler lh = new KySuHandler();
+            List<Model.KySu> ls = lh.layds();
+            foreach (Model.KySu lm in ls)
+            {
+                combosource.Add(lm.ma, lm.ma + " - " + lm.ten);
+            }
+            phutrachcombo.DataSource = new BindingSource(combosource, null);
+            phutrachcombo.DisplayMember = "Value";
+            phutrachcombo.ValueMember = "Key";
+            phutrachcombo.SelectedIndex = 0;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -59,6 +91,7 @@ namespace Quanly.QuanLySeri
             }
             SeriHandler lh = new SeriHandler();
             Boolean checkma = lh.kiemtra(ma, "", "","");
+            
             if (checkma)
             {
                 MessageBox.Show("Mã nội bộ phải là duy nhất", "Lỗi khi sửa ",
@@ -69,7 +102,19 @@ namespace Quanly.QuanLySeri
             else
             {
                 string makh = ((KeyValuePair<string, string>)comboBox2.SelectedItem).Key;
-                lh.them(ma, ten, mamay,mamodel,makh,dateTimePicker1.Value.Date);
+                string maks = ((KeyValuePair<string, string>)phutrachcombo.SelectedItem).Key;
+                string mahtg = ((KeyValuePair<string, string>)hientrangcb.SelectedItem).Key;
+                int mahtrang = 0;
+                Int32.TryParse(mahtg, out mahtrang);
+
+                int keyseri= lh.them(ma, ten, mamay,mamodel,makh,dateTimePicker1.Value.Date,maks,mahtrang);
+
+                Model.Seri sr = lh.laythongtinma(ma);
+
+                LichSuSeriHandler lssr = new LichSuSeriHandler();
+
+                lssr.them(sr.pk, dateTimePicker1.Value.Date, mahtrang, maks, makh);
+                
                 this.Close();
             }
         }

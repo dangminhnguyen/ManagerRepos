@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Quanly.Model;
+using System.Windows.Forms;
 
 namespace Quanly.Handler
 {
@@ -63,6 +64,27 @@ namespace Quanly.Handler
                             String ma1 = reader.GetString(reader.GetOrdinal("ma"));
                             String ten1 = reader.GetString(reader.GetOrdinal("ten"));
                             String khachhang = reader.GetString(reader.GetOrdinal("khachhang"));
+                            String phutrach = null;
+
+                            int hientrang = 0;
+                            if (reader.IsDBNull(reader.GetOrdinal("hientrang")))
+                            {
+                                hientrang = 0;
+                            }
+                            else
+                            {
+                                hientrang = reader.GetInt32(reader.GetOrdinal("hientrang"));
+                            }
+
+
+                            if (reader.IsDBNull(reader.GetOrdinal("phutrach")))
+                            {
+                                phutrach = null;
+                            }
+                            else
+                            {
+                                phutrach = reader.GetString(reader.GetOrdinal("phutrach"));
+                            }
                             DateTime? ngaylapdat = null;
                             if (reader.IsDBNull(reader.GetOrdinal("ngaylapdat")))
                             {
@@ -72,6 +94,8 @@ namespace Quanly.Handler
                             {
                                 ngaylapdat = reader.GetDateTime(reader.GetOrdinal("ngaylapdat"));
                             }
+
+
                             Model.Seri m = new Model.Seri();
                             m.ma = ma1;
                             m.ten = ten1;
@@ -80,6 +104,8 @@ namespace Quanly.Handler
                             m.khachhang = khachhang;
                             m.pk = pk;
                             m.ngaylapdat = ngaylapdat;
+                            m.phutrach = phutrach;
+                            m.hientrang = hientrang;
                             ls.Add(m);
                         }
                 }
@@ -108,9 +134,20 @@ namespace Quanly.Handler
                             String ten1 = reader.GetString(reader.GetOrdinal("ten"));
                             String khachhang = reader.GetString(reader.GetOrdinal("khachhang"));
                             DateTime? ngaylapdat =null;
+                            String phutrach = null;
+
+                            if (reader.IsDBNull(reader.GetOrdinal("phutrach")))
+                            {
+                                phutrach = null;
+                            }
+                            else
+                            {
+                                phutrach = reader.GetString(reader.GetOrdinal("phutrach"));
+                            }
+
                             if (reader.IsDBNull(reader.GetOrdinal("ngaylapdat")))
                             {
-                                ngaylapdat=null;
+                                ngaylapdat = null;
                             }
                             else
                             {
@@ -122,6 +159,7 @@ namespace Quanly.Handler
                             m.khachhang = khachhang;
                             m.pk = pk;
                             m.ngaylapdat = ngaylapdat;
+                            m.phutrach = phutrach;
                             ls.Add(m);
                         }
                 }
@@ -152,7 +190,7 @@ namespace Quanly.Handler
                             s.khachhang = reader.GetString(reader.GetOrdinal("khachhang"));
                             s.mamodel = reader.GetString(reader.GetOrdinal("mamodel"));
                             s.mamay = reader.GetString(reader.GetOrdinal("mamay"));
-                            s.hientrang = reader.GetString(reader.GetOrdinal("hientrang"));
+                            s.hientrang = reader.GetInt32(reader.GetOrdinal("hientrang"));
                             
                             if (reader.IsDBNull(reader.GetOrdinal("ngaylapdat")))
                             {
@@ -162,7 +200,17 @@ namespace Quanly.Handler
                             {
                                 s.ngaylapdat = reader.GetDateTime(reader.GetOrdinal("ngaylapdat"));
                             }
-                           
+                          
+
+                            if (reader.IsDBNull(reader.GetOrdinal("phutrach")))
+                            {
+                                s.phutrach = null;
+                            }
+                            else
+                            {
+                                s.phutrach = reader.GetString(reader.GetOrdinal("phutrach"));
+                            }
+
                         }
                 }
             }
@@ -193,7 +241,7 @@ namespace Quanly.Handler
                             s.khachhang = reader.GetString(reader.GetOrdinal("khachhang"));
                             s.mamodel = reader.GetString(reader.GetOrdinal("mamodel"));
                             s.mamay = reader.GetString(reader.GetOrdinal("mamay"));
-                            s.hientrang = reader.GetString(reader.GetOrdinal("hientrang"));
+                            s.hientrang = reader.GetInt32(reader.GetOrdinal("hientrang"));
 
                             if (reader.IsDBNull(reader.GetOrdinal("ngaylapdat")))
                             {
@@ -202,6 +250,14 @@ namespace Quanly.Handler
                             else
                             {
                                 s.ngaylapdat = reader.GetDateTime(reader.GetOrdinal("ngaylapdat"));
+                            }
+                            if (reader.IsDBNull(reader.GetOrdinal("phutrach")))
+                            {
+                                s.phutrach = null;
+                            }
+                            else
+                            {
+                                s.phutrach = reader.GetString(reader.GetOrdinal("phutrach"));
                             }
 
                         }
@@ -234,7 +290,7 @@ namespace Quanly.Handler
                             s.khachhang = reader.GetString(reader.GetOrdinal("khachhang"));
                             s.mamodel = reader.GetString(reader.GetOrdinal("mamodel"));
                             s.mamay = reader.GetString(reader.GetOrdinal("mamay"));
-                            s.hientrang = reader.GetString(reader.GetOrdinal("hientrang"));
+                            s.hientrang = reader.GetInt32(reader.GetOrdinal("hientrang"));
                             if (reader.IsDBNull(reader.GetOrdinal("ngaylapdat")))
                             {
                                 s.ngaylapdat = null;
@@ -242,6 +298,14 @@ namespace Quanly.Handler
                             else
                             {
                                 s.ngaylapdat = reader.GetDateTime(reader.GetOrdinal("ngaylapdat"));
+                            }
+                            if (reader.IsDBNull(reader.GetOrdinal("phutrach")))
+                            {
+                                s.phutrach = null;
+                            }
+                            else
+                            {
+                                s.phutrach = reader.GetString(reader.GetOrdinal("phutrach"));
                             }
                             list.Add(s);
                         }
@@ -273,7 +337,7 @@ namespace Quanly.Handler
                             s.khachhang = reader.GetString(reader.GetOrdinal("khachhang"));
                             s.mamodel = reader.GetString(reader.GetOrdinal("mamodel"));
                             s.mamay = reader.GetString(reader.GetOrdinal("mamay"));
-                            s.hientrang = reader.GetString(reader.GetOrdinal("hientrang"));
+                            s.hientrang = reader.GetInt32(reader.GetOrdinal("hientrang"));
                             if (reader.IsDBNull(reader.GetOrdinal("ngaylapdat")))
                             {
                                 s.ngaylapdat = null;
@@ -281,6 +345,14 @@ namespace Quanly.Handler
                             else
                             {
                                 s.ngaylapdat = reader.GetDateTime(reader.GetOrdinal("ngaylapdat"));
+                            }
+                            if (reader.IsDBNull(reader.GetOrdinal("phutrach")))
+                            {
+                                s.phutrach = null;
+                            }
+                            else
+                            {
+                                s.phutrach = reader.GetString(reader.GetOrdinal("phutrach"));
                             }
                             list.Add(s);
                         }
@@ -312,7 +384,7 @@ namespace Quanly.Handler
                             s.khachhang = reader.GetString(reader.GetOrdinal("khachhang"));
                             s.mamodel = reader.GetString(reader.GetOrdinal("mamodel"));
                             s.mamay = reader.GetString(reader.GetOrdinal("mamay"));
-                            s.hientrang = reader.GetString(reader.GetOrdinal("hientrang"));
+                            s.hientrang = reader.GetInt32(reader.GetOrdinal("hientrang"));
                             if (reader.IsDBNull(reader.GetOrdinal("ngaylapdat")))
                             {
                                 s.ngaylapdat = null;
@@ -321,42 +393,61 @@ namespace Quanly.Handler
                             {
                                 s.ngaylapdat = reader.GetDateTime(reader.GetOrdinal("ngaylapdat"));
                             }
-                            
+                            if (reader.IsDBNull(reader.GetOrdinal("phutrach")))
+                            {
+                                s.phutrach = null;
+                            }
+                            else
+                            {
+                                s.phutrach = reader.GetString(reader.GetOrdinal("phutrach"));
+                            }
+
                         }
                 }
             }
             return s;
         }
 
-        public void them(string ma, string ten, string mamay,string mamodel,string khachhang,DateTime ngaylapdat)
+        public int them(string ma, string ten, string mamay,string mamodel,string khachhang,DateTime ngaylapdat,string phutrach,int mahientrang)
         {
+            int pk = 0;
             using (var conn = new NpgsqlConnection(connString))
             {
                 conn.Open();
                 using (var cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "INSERT INTO seri (ma,ten,mamay,mamodel,khachhang,hientrang,ngaylapdat) VALUES (@ma,@ten,@mamay,@mamodel,@khachhang,'0',@ngaylapdat)";
+                    cmd.CommandText = "INSERT INTO seri (ma,ten,mamay,mamodel,khachhang,hientrang,ngaylapdat,phutrach) VALUES (@ma,@ten,@mamay,@mamodel,@khachhang,@hientrang,@ngaylapdat,@phutrach)";
                     cmd.Parameters.AddWithValue("ma", ma);
                     cmd.Parameters.AddWithValue("ten", ten);
                     cmd.Parameters.AddWithValue("mamay", mamay);
                     cmd.Parameters.AddWithValue("mamodel", mamodel);
                     cmd.Parameters.AddWithValue("khachhang", khachhang);
                     cmd.Parameters.AddWithValue("ngaylapdat", ngaylapdat);
-                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("phutrach", phutrach);
+                    cmd.Parameters.AddWithValue("hientrang", mahientrang);
+
+                    using (var reader = cmd.ExecuteReader())
+                        while (reader.Read())
+                        {
+                            pk = reader.GetInt32(reader.GetOrdinal("pk"));
+                        }
                 }
             }
+            
+            return pk;
         }
 
-        public void sua(string ma, string ten, string mamay ,string mamodel, string macu, string tencu,string khachhang,DateTime ngaylapdat)
+        public void sua(string ma, string ten, string mamay ,string mamodel, string macu, string tencu, string phutrach, int hientrang,string khachhang,DateTime ngaylapdat)
         {
+            MessageBox.Show(phutrach);
             using (var conn = new NpgsqlConnection(connString))
             {
                 conn.Open();
                 using (var cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "UPDATE seri SET ma=@mamoi,ten=@tenmoi,khachhang=@khachhang,ngaylapdat=@ngaylapdat where ma=@macu and ten=@tencu " +
+                    cmd.CommandText = "UPDATE seri SET ma=@mamoi,ten=@tenmoi,khachhang=@khachhang,phutrach=@phutrach,hientrang=@hientrang,ngaylapdat=@ngaylapdat where ma=@macu and ten=@tencu " +
                         "and mamay=@mamay and mamodel=@mamodel";
                     cmd.Parameters.AddWithValue("mamoi", ma);
                     cmd.Parameters.AddWithValue("tenmoi", ten);
@@ -366,10 +457,13 @@ namespace Quanly.Handler
                     cmd.Parameters.AddWithValue("mamodel", mamodel);
                     cmd.Parameters.AddWithValue("khachhang", khachhang);
                     cmd.Parameters.AddWithValue("ngaylapdat", ngaylapdat);
+                    cmd.Parameters.AddWithValue("phutrach", phutrach);
+                    cmd.Parameters.AddWithValue("hientrang", hientrang);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
+        
         public void deleteseri(int pk)
         {
             using(var conn = new NpgsqlConnection(connString))

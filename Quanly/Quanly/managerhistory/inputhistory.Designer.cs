@@ -66,6 +66,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.tinhtranglayCB = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.vitrilkLB = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.serilapCB = new System.Windows.Forms.ComboBox();
@@ -115,11 +116,11 @@
             this.dateTo = new System.Windows.Forms.DateTimePicker();
             this.lable90 = new System.Windows.Forms.Label();
             this.lable89 = new System.Windows.Forms.Label();
-            this.vitrilkLB = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -508,6 +509,15 @@
             this.groupBox3.Size = new System.Drawing.Size(385, 116);
             this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
+            // 
+            // vitrilkLB
+            // 
+            this.vitrilkLB.AutoSize = true;
+            this.vitrilkLB.Location = new System.Drawing.Point(279, 40);
+            this.vitrilkLB.Name = "vitrilkLB";
+            this.vitrilkLB.Size = new System.Drawing.Size(41, 13);
+            this.vitrilkLB.TabIndex = 66;
+            this.vitrilkLB.Text = "label16";
             // 
             // groupBox4
             // 
@@ -902,6 +912,7 @@
             this.Column20,
             this.Column21,
             this.Column19,
+            this.Column27,
             this.Column24,
             this.Column22,
             this.Column23,
@@ -971,15 +982,6 @@
             this.lable89.TabIndex = 81;
             this.lable89.Text = "To:";
             // 
-            // vitrilkLB
-            // 
-            this.vitrilkLB.AutoSize = true;
-            this.vitrilkLB.Location = new System.Drawing.Point(279, 40);
-            this.vitrilkLB.Name = "vitrilkLB";
-            this.vitrilkLB.Size = new System.Drawing.Size(41, 13);
-            this.vitrilkLB.TabIndex = 66;
-            this.vitrilkLB.Text = "label16";
-            // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.HeaderText = "KeySeri";
@@ -1004,6 +1006,12 @@
             this.Column19.HeaderText = "Hiện trạng";
             this.Column19.Name = "Column19";
             this.Column19.ReadOnly = true;
+            // 
+            // Column27
+            // 
+            this.Column27.HeaderText = "thời gian";
+            this.Column27.Name = "Column27";
+            this.Column27.ReadOnly = true;
             // 
             // Column24
             // 
@@ -1182,6 +1190,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column27;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column23;

@@ -236,9 +236,9 @@ namespace Quanly
         {
             List<Record> list = new List<Record>();
             LichSuHandler lh = new LichSuHandler();
-            string khachhang = ((KeyValuePair<string, string>)khachhangCB.SelectedItem).Key;
+            //string khachhang = ((KeyValuePair<string, string>)khachhangCB.SelectedItem).Key;
             
-            list = lh.tracuu(pk, dateTimePicker1.Value, dateTimePicker2.Value, khachhang);
+            list = lh.tracuu(pk, dateTimePicker1.Value, dateTimePicker2.Value, "");
 
             Record r1 = lh.traCuuGanNhat(pk);
 

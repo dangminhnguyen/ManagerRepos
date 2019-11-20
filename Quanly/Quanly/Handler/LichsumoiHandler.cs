@@ -281,7 +281,7 @@ namespace Quanly.Handler
                 using (var cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT * from lichsu where keyseri=@pk " +
+                    cmd.CommandText = "SELECT * from lichsum where keyseri=@pk " +
                         "and thoigian=(Select max(thoigian) from lichsu where keyseri=@pk) ";
                     cmd.Parameters.AddWithValue("pk", pk);
 

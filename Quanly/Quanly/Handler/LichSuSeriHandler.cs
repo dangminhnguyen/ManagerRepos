@@ -1,63 +1,45 @@
-﻿using Npgsql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Quanly.Handler;
+using Npgsql;
 using Quanly.Model;
 
 namespace Quanly.Handler
 {
-    class LichSuHandler
+  
+    class LichSuSeriHandler
     {
         String connString;
-        public LichSuHandler()
+        public LichSuSeriHandler()
         {
             connString = new Property().ConnString;
         }
 
-        public int  them( int keyseri, string hientrang,string khacphuc,
-            string kysu,DateTime thoigian,string ghichu, string khachhang, string mavitri)
+        public void them(int keyseri, DateTime ngaylapdat, int tinhtrang, string phutrach, string khachhang)
         {
-            
-            int pk=0;
+
+            int pk = 0;
             using (var conn = new NpgsqlConnection(connString))
             {
                 conn.Open();
                 using (var cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = conn;
-                    if(mavitri != null)
-                    {
-                        cmd.CommandText = "INSERT INTO lichsu (keyseri,hientrang,khacphuc,kysu,thoigian,ghichu,khachhang, vitri) " +
-                        "VALUES (@keyseri,@hientrang,@khacphuc,@kysu,@thoigian,@ghichu,@khachhang,@vitri) RETURNING pk";
-                        cmd.Parameters.AddWithValue("vitri", mavitri);
-                    }
-                    else
-                    {
-                        cmd.CommandText = "INSERT INTO lichsu (keyseri,hientrang,khacphuc,kysu,thoigian,ghichu,khachhang) " +
-                        "VALUES (@keyseri,@hientrang,@khacphuc,@kysu,@thoigian,@ghichu,@khachhang) RETURNING pk";
-                      
-                    }
-                    
+                    cmd.CommandText = "INSERT INTO lichsuseri (keyseri,khachhang,kysuphutrach,ngaylapdat,tinhtrang) " +
+                      "VALUES (@keyseri,@khachhang,@kysuphutrach,@ngaylapdat,@tinhtrang) RETURNING pk";
+
                     cmd.Parameters.AddWithValue("keyseri", keyseri);
-                    cmd.Parameters.AddWithValue("thoigian", thoigian);
-                    cmd.Parameters.AddWithValue("khacphuc", khacphuc);
-                    cmd.Parameters.AddWithValue("hientrang", hientrang);
-                    cmd.Parameters.AddWithValue("ghichu", ghichu);
-                    cmd.Parameters.AddWithValue("kysu", kysu);
                     cmd.Parameters.AddWithValue("khachhang", khachhang);
-
-                    
-
-                    using (var reader = cmd.ExecuteReader())
-                        while (reader.Read())
-                        {
-                            pk = reader.GetInt32(reader.GetOrdinal("pk"));
-                        }
+                    cmd.Parameters.AddWithValue("ngaylapdat", ngaylapdat);
+                    cmd.Parameters.AddWithValue("tinhtrang", tinhtrang);
+                    cmd.Parameters.AddWithValue("kysuphutrach", phutrach);
+                    cmd.ExecuteNonQuery();
                 }
             }
-            return pk;
+            
         }
 
         public void capNhatFile(int pk, string filepath)
@@ -71,7 +53,7 @@ namespace Quanly.Handler
                     cmd.CommandText = "Update lichsu set filepath=@filepath" +
                         " where pk=@pk";
                     cmd.Parameters.AddWithValue("pk", pk);
-                    cmd.Parameters.AddWithValue(" filepath", filepath);            
+                    cmd.Parameters.AddWithValue(" filepath", filepath);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -118,7 +100,7 @@ namespace Quanly.Handler
                     cmd.Connection = conn;
                     cmd.CommandText = "Delete from  lichsu where pk=@pk ";
                     cmd.Parameters.AddWithValue("pk", pk);
-                   
+
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -152,7 +134,7 @@ namespace Quanly.Handler
                     cmd.Connection = conn;
                     cmd.CommandText = "SELECT * from lichsu where pk=@pk";
                     cmd.Parameters.AddWithValue("pk", pk);
-                  
+
 
                     using (var reader = cmd.ExecuteReader())
                         while (reader.Read())
@@ -164,7 +146,7 @@ namespace Quanly.Handler
                             r.phutrach = reader.GetString(reader.GetOrdinal("kysu"));
                             r.ghichu = reader.GetString(reader.GetOrdinal("ghichu"));
                             r.thoigian = reader.GetDateTime(reader.GetOrdinal("thoigian"));
-                            if(reader.IsDBNull(reader.GetOrdinal("khachhang")))
+                            if (reader.IsDBNull(reader.GetOrdinal("khachhang")))
                             {
                                 r.khachhang = null;
                             }
@@ -172,10 +154,10 @@ namespace Quanly.Handler
                             {
                                 r.khachhang = reader.GetString(reader.GetOrdinal("khachhang"));
                             }
-                            
+
                             //if (reader.IsDBNull(reader.GetOrdinal("filepath")))
                             //{
-                                r.filepath = "";
+                            r.filepath = "";
                             // }
                             // else
                             // {
@@ -196,7 +178,7 @@ namespace Quanly.Handler
             return r;
         }
 
-        public List<Record> tracuu(int pk,DateTime from,DateTime to, String khachhang)
+        public List<Record> tracuu(int pk, DateTime from, DateTime to, String khachhang)
         {
             List<Record> list = new List<Record>();
             using (var conn = new NpgsqlConnection(connString))
@@ -220,9 +202,9 @@ namespace Quanly.Handler
 
                             Record r = new Record();
                             r.pk = reader.GetInt32(reader.GetOrdinal("pk"));
-                            r.keyseri= reader.GetInt32(reader.GetOrdinal("keyseri"));
+                            r.keyseri = reader.GetInt32(reader.GetOrdinal("keyseri"));
                             r.hientrang = reader.GetString(reader.GetOrdinal("hientrang"));
-                            r.khacphuc= reader.GetString(reader.GetOrdinal("khacphuc"));
+                            r.khacphuc = reader.GetString(reader.GetOrdinal("khacphuc"));
                             r.phutrach = reader.GetString(reader.GetOrdinal("kysu"));
                             r.ghichu = reader.GetString(reader.GetOrdinal("ghichu"));
                             r.thoigian = reader.GetDateTime(reader.GetOrdinal("thoigian"));
@@ -233,7 +215,7 @@ namespace Quanly.Handler
                             else
                             {
                                 r.khachhang = reader.GetString(reader.GetOrdinal("khachhang"));
-                                
+
                             }
                             if (reader.IsDBNull(reader.GetOrdinal("vitri")))
                             {
@@ -265,11 +247,11 @@ namespace Quanly.Handler
                     cmd.CommandText = "SELECT * from lichsu where keyseri=@pk " +
                         "and thoigian=(Select max(thoigian) from lichsu where keyseri=@pk) ";
                     cmd.Parameters.AddWithValue("pk", pk);
-              
+
 
                     using (var reader = cmd.ExecuteReader())
                         while (reader.Read())
-                        {                            
+                        {
                             r.pk = reader.GetInt32(reader.GetOrdinal("pk"));
                             r.keyseri = reader.GetInt32(reader.GetOrdinal("keyseri"));
                             r.hientrang = reader.GetString(reader.GetOrdinal("hientrang"));
@@ -302,57 +284,6 @@ namespace Quanly.Handler
             }
             return r;
         }
-        public List<Record> traCuuGanNhat1(int pk)
-        {
-            List<Record> list = new List<Record>();
-            Record r = new Record();
-            using (var conn = new NpgsqlConnection(connString))
-            {
-                conn.Open();
 
-                // Retrieve all rows
-                using (var cmd = new NpgsqlCommand())
-                {
-                    cmd.Connection = conn;
-                    cmd.CommandText = "SELECT * from lichsu where (keyseri=@pk or @pk=0) " +
-                        "and thoigian=(Select max(thoigian) from lichsu where keyseri=@pk) ";
-                    cmd.Parameters.AddWithValue("pk", pk);
-
-
-                    using (var reader = cmd.ExecuteReader())
-                        while (reader.Read())
-                        {
-                            r.pk = reader.GetInt32(reader.GetOrdinal("pk"));
-                            r.keyseri = reader.GetInt32(reader.GetOrdinal("keyseri"));
-                            r.hientrang = reader.GetString(reader.GetOrdinal("hientrang"));
-                            r.khacphuc = reader.GetString(reader.GetOrdinal("khacphuc"));
-                            r.phutrach = reader.GetString(reader.GetOrdinal("kysu"));
-                            r.ghichu = reader.GetString(reader.GetOrdinal("ghichu"));
-                            r.thoigian = reader.GetDateTime(reader.GetOrdinal("thoigian"));
-
-                            if (reader.IsDBNull(reader.GetOrdinal("khachhang")))
-                            {
-                                r.khachhang = null;
-                            }
-                            else
-                            {
-                                r.khachhang = reader.GetString(reader.GetOrdinal("khachhang"));
-
-                            }
-                            if (reader.IsDBNull(reader.GetOrdinal("vitri")))
-                            {
-                                r.vitri = null;
-                            }
-                            else
-                            {
-                                r.vitri = reader.GetString(reader.GetOrdinal("vitri"));
-
-                            }
-                            list.Add(r);
-                        }
-                }
-            }
-            return list;
-        }
     }
 }

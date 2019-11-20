@@ -444,19 +444,16 @@ namespace Quanly.managerhistory
             {
                 ThongkeLKHandler tkh = new ThongkeLKHandler();
                 bool check = tkh.kiemtra(this.keyseri, lklay);
-                if (check)
-                {
-                    tkh.sua(this.keyseri, lklay, ttrPhLay, srmayphlap, vtrmoiPhlay, srmayphlay, xuatsu, ttrphlap);
-                }
-                else
-                {
-                    tkh.them(this.keyseri, lklay, ttrPhLay, srmayphlap, vtrmoiPhlay, srmayphlay, xuatsu, ttrphlap);
-                }
+               // if (check)
+               // {
+                   // tkh.sua(this.keyseri, lklay, ttrPhLay, srmayphlap, vtrmoiPhlay, srmayphlay, xuatsu, ttrphlap);
+               // }
+               // else
+               // {
+                    tkh.them(this.keyseri, lklay, ttrPhLay, srmayphlap, vtrmoiPhlay, srmayphlay, xuatsu, ttrphlap, datePH.Value);
+              //  }
             }
-
-            
-            
-
+            tracuulinhkien();
 
         }
 
@@ -802,8 +799,22 @@ namespace Quanly.managerhistory
             LichsumoiHandler lsm = new LichsumoiHandler();
             lsm.sua(this.pk, khachhang, lklay, kslay, lydolay, ngaylay, ttrlay, ngayPh, ksPh, ttrPhLay,
                srmayphlap, vtrmoiPhlay, ghichuphlay, ttrphlap, srmayphlay, xuatsu, ghichuphlap);
+
             TraCuu();
-        
+            if (lklay != null && lklay != "")
+            {
+                ThongkeLKHandler tkh = new ThongkeLKHandler();
+                bool check = tkh.kiemtra(this.keyseri, lklay);
+                // if (check)
+                // {
+                // tkh.sua(this.keyseri, lklay, ttrPhLay, srmayphlap, vtrmoiPhlay, srmayphlay, xuatsu, ttrphlap);
+                // }
+                // else
+                // {
+                tkh.them(this.keyseri, lklay, ttrPhLay, srmayphlap, vtrmoiPhlay, srmayphlay, xuatsu, ttrphlap, datePH.Value);
+                //  }
+            }
+            tracuulinhkien();
         }
 
         private void CLOSE_Click(object sender, EventArgs e)
@@ -837,9 +848,66 @@ namespace Quanly.managerhistory
         }
         private void tracuulinhkien()
         {
+            dataGridView2.Rows.Clear();
             ThongkeLKHandler tkh = new ThongkeLKHandler();
-            List<thongkelinhkien> llk = tkh.layds();
-            foreach(thongkelinhkien tk in llk)
+
+            LinhKienHandle lkh = new LinhKienHandle();
+            string md = ((KeyValuePair<string, string>)modelCB.SelectedItem).Key;
+            List<linhkien> mlk = new List<linhkien>();
+            mlk = lkh.layds(md);
+            foreach(linhkien lk in mlk)
+            {
+                Boolean check =  tkh.kiemtra(this.keyseri, lk.ma);
+                if(check)
+                {
+                    thongkelinhkien tk = tkh.traCuuGanNhat(this.keyseri, lk.ma);
+                    MessageBox.Show(tk.ma,lk.ma);
+
+                    string model = ((KeyValuePair<string, string>)modelCB.SelectedItem).Key;
+
+                    //linhkien lk = lkh.laythongtin(model, tk.ma, "");
+                    HienTrangHandler hth = new HienTrangHandler();
+
+                    int tinhtrang = 0;
+                    Int32.TryParse(tk.tinhtrang, out tinhtrang);
+                    string hientrang = "";
+                    if (tinhtrang != 0)
+                    {
+                        HienTrang ht = hth.laythongtin(tinhtrang, "");
+                        hientrang = ht.ten;
+
+                    }
+
+                    int tinhtrang2 = 0;
+                    Int32.TryParse(tk.ttrangmayve, out tinhtrang2);
+                    string hientrang2 = "";
+                    if (tinhtrang2 != 0)
+                    {
+                        HienTrang ht2 = hth.laythongtin(tinhtrang2, "");
+                        hientrang2 = ht2.ten;
+                    }
+
+                    NoiLayPTHandler nlpt = new NoiLayPTHandler();
+                    NoiLayPT nl1 = nlpt.laythongtin(tk.vitrimoi, "");
+                    NoiLayPT nl2 = nlpt.laythongtin(tk.xuatsu, "");
+
+                    SeriHandler serihd = new SeriHandler();
+                    int sr1 = 0;
+                    Int32.TryParse(tk.maymoi, out sr1);
+                    Seri srmoi = serihd.laythongtin(sr1);
+                    int sr2 = 0;
+                    Int32.TryParse(tk.maymoi, out sr2);
+                    Seri srve = serihd.laythongtin(sr2);
+                    dataGridView2.Rows.Add(tk.keyseri, tk.ma, lk.ten, hientrang, tk.thoigian.ToString("dd/MM/yyyy hh:mm:ss"), nl1.ten, srmoi.ten, srve.ten, nl2.ten, hientrang2);
+                }
+
+                
+            }
+
+
+          
+
+            /*foreach(thongkelinhkien tk in llk)
             {
                 LinhKienHandle lkh = new LinhKienHandle();
                 string model = ((KeyValuePair<string, string>)modelCB.SelectedItem).Key;
@@ -865,12 +933,9 @@ namespace Quanly.managerhistory
                     hientrang2 = ht2.ten;
                 }
                 
-
-
                 NoiLayPTHandler nlpt = new NoiLayPTHandler();
                 NoiLayPT nl1 = nlpt.laythongtin(tk.vitrimoi, "");
                 NoiLayPT nl2 = nlpt.laythongtin(tk.xuatsu, "");
-
 
                 SeriHandler serihd = new SeriHandler();
                 int sr1 = 0;
@@ -879,9 +944,8 @@ namespace Quanly.managerhistory
                 int sr2 = 0;
                 Int32.TryParse(tk.maymoi, out sr2);
                 Seri srve = serihd.laythongtin(sr2);
-
-                dataGridView2.Rows.Add(tk.keyseri,tk.ma, lk.ten, hientrang, nl1.ten, srmoi.ten, srve.ten, nl2.ten, hientrang2);
-            }
+                dataGridView2.Rows.Add(tk.keyseri,tk.ma, lk.ten, hientrang, tk.thoigian.ToString("dd/MM/yyyy hh:mm:ss"), nl1.ten, srmoi.ten, srve.ten, nl2.ten, hientrang2);
+            }*/
 
         }
 

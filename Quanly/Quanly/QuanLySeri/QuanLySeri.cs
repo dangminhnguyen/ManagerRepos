@@ -93,14 +93,20 @@ namespace Quanly.QuanLySeri
             {
                 KhachHangHandler kh = new KhachHangHandler();
                 KhachHang k = kh.laythongtin(lm.khachhang, "");
+                KySuHandler ksh = new KySuHandler();
+                KySu ks = ksh.laythongtin(lm.phutrach,"");
+
+                HienTrangHandler Hthd = new HienTrangHandler();
+                
+                HienTrang ht = Hthd.laythongtin(lm.hientrang, "");
                 if (lm.ngaylapdat == null)
                 {
-                    dataGridView1.Rows.Add(lm.ma, lm.ten, lm.khachhang, k.ten, "");
+                    dataGridView1.Rows.Add(lm.ma, lm.ten, lm.khachhang,k.ten, ks.ten,ht.ten,"");
                 }
                 else
                 {
                     DateTime Ut = lm.ngaylapdat ?? DateTime.Now;
-                    dataGridView1.Rows.Add(lm.ma, lm.ten, lm.khachhang, k.ten, Ut.ToString("dd/MM/yyyy"));
+                    dataGridView1.Rows.Add(lm.ma, lm.ten, lm.khachhang, k.ten, ks.ten, ht.ten, Ut.ToString("dd/MM/yyyy"));
                 }
                 
             }
@@ -152,7 +158,7 @@ namespace Quanly.QuanLySeri
                 Model.Seri s = new Model.Seri();
                 s = sh.tracuuma(ma);
                 DateTime UpdatedTime = s.ngaylapdat?? DateTime.Now;
-                ChinhSuaSeri frm2 = new ChinhSuaSeri(ma, ten, mamay,mamodel,makh,UpdatedTime)
+                ChinhSuaSeri frm2 = new ChinhSuaSeri(ma, ten, mamay,mamodel,makh,UpdatedTime,s.hientrang, s.phutrach)
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };

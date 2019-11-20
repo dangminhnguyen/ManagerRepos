@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="Handler\Excel.cs" />
     <Compile Include="Handler\LichsumoiHandler.cs" />
+    <Compile Include="Handler\LichSuSeriHandler.cs" />
     <Compile Include="Handler\LinhKienHandle.cs" />
     <Compile Include="Handler\NoiLayPTHandler.cs" />
     <Compile Include="Handler\ThongkeLKHandler.cs" />
@@ -484,6 +485,8 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Lichsuseri\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

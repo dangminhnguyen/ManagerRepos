@@ -16,6 +16,7 @@ namespace Quanly.Model
         public string ttrangmayve { get; set; }
         public string vitrimoi { get; set; }
         public string xuatsu { get; set; }
+        public DateTime thoigian { get; set; }
 
         public thongkelinhkien()
         {
@@ -27,8 +28,9 @@ namespace Quanly.Model
             this.ttrangmayve = "";
             this.vitrimoi = "";
             this.xuatsu = "";
+            this.thoigian = DateTime.MinValue;
         }
-        public thongkelinhkien(int keyseri, string ma,string tinhtrang, string maymoi, string vitrimoi, string mayve,string xuatsu, string ttrangmayve)
+        public thongkelinhkien(int keyseri, string ma,DateTime thoigian,string tinhtrang, string maymoi, string vitrimoi, string mayve,string xuatsu, string ttrangmayve)
         {
             this.keyseri = keyseri;
             this.ma = ma;
@@ -38,6 +40,7 @@ namespace Quanly.Model
             this.ttrangmayve = ttrangmayve;
             this.vitrimoi = vitrimoi;
             this.xuatsu = xuatsu;
+            this.thoigian = thoigian;
         }
     }
 }

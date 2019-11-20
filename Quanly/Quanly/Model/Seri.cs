@@ -14,11 +14,12 @@ namespace Quanly.Model
         public string mamodel { get; set; }
         public string mamay { get; set; }
         public string khachhang { get; set; }
-        public string hientrang { get; set; }
+        public int hientrang { get; set; }
+        public string phutrach { get; set; }
         public DateTime? ngaylapdat { get; set; }
 
         public Seri(string ma, string ten, string mamay,
-            string mamodel,string khachhang,string hientrang,DateTime? ngaylapdat)
+            string mamodel,string khachhang,int hientrang,DateTime? ngaylapdat, string phutrach)
         {
             this.ma = ma;
             this.ten = ten;
@@ -27,6 +28,7 @@ namespace Quanly.Model
             this.khachhang = khachhang;
             this.hientrang = hientrang;
             this.ngaylapdat = ngaylapdat;
+            this.phutrach = phutrach;
         }
         public Seri()
         {
@@ -35,9 +37,10 @@ namespace Quanly.Model
             this.mamodel = null;
             this.mamay = null;
             this.khachhang = null;
-            this.hientrang = null;
+            this.hientrang = 0;
             this.pk = 0;
             this.ngaylapdat = null;
+            this.phutrach = null;
         }
     }
 }
